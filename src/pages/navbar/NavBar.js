@@ -1,3 +1,4 @@
+import style from './NavBar.module.css'
 
 
 import log from '../../img/Logos_UFPA.png'
@@ -7,12 +8,24 @@ import { ItemNavBar } from './ItemNavBar';
 
 export function NavBar(){
 
-    const [toggle, setToggle] = useState(false)
+    const [toggle1, setToggle1] = useState(true)
+    const [toggle2, setToggle2] = useState(false)
+    const [toggle3, setToggle3] = useState(false)
 
-    function toggleStyle(e){
-        setToggle(!toggle)
-        
-        console.log(e.target);
+    function toggleStyle1(e){
+        setToggle1(true)
+        setToggle2(false)
+        setToggle3(false)
+    }
+    function toggleStyle2(e){
+        setToggle1(false)
+        setToggle2(true)
+        setToggle3(false)
+    }
+    function toggleStyle3(e){
+        setToggle1(false)
+        setToggle2(false)
+        setToggle3(true)
     }
 
     return(
@@ -27,20 +40,94 @@ export function NavBar(){
                         <h3 className='text-base'>de volta</h3>
                     </div>
 
-                    <div onClick={toggleStyle}>
-                        {toggle ? 
+                    <div onClick={toggleStyle1}>
+                        {toggle1 ? 
                             (
-                                <ItemNavBar  />
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    
+                                    text='LISTA DE ALUNOS'
+                                    icon={<IoIosList />}
+                                />
                             ) 
                             :
                             (
-                                <ItemNavBar  /> 
+                                <ItemNavBar 
+                                    conStyle='contaniner_style2' 
+                                    textContainer='text_container2'
+                                    
+                                    text='LISTA DE ALUNOS'
+                                    icon={<IoIosList />}
+                                />
                             )
                         }
                     </div>
 
-                    {/* <div onClick={toggleStyle}>
-                        {toggle ? 
+                    <div onClick={toggleStyle2}>
+                        {toggle2 ? 
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    text='CADASTRO DE ALUNO'
+                                    icon={<IoIosList />}
+                                />
+                            ) 
+                            :
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style2' 
+                                    textContainer='text_container2'
+                                    
+                                    text='CADASTRO DE ALUNO'
+                                    icon={<IoIosList />}
+                                />
+                            )
+                        }
+                    </div>
+
+                    <div onClick={toggleStyle3}>
+                        {toggle3 ? 
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    
+                                    text='NOTAS'
+                                    icon={<IoIosList />}
+                                />
+                            ) 
+                            :
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style2' 
+                                    textContainer='text_container2'
+                                    
+                                    text='NOTAS'
+                                    icon={<IoIosList />}
+                                />
+                            )
+                        }
+                    </div>
+
+                    {/* <div onClick={toggleStyle1} >
+                        {toggle1 ? 
                             
                             (<div className={style.contaniner_style2}>
                                 <div className={`${style.text_container2} font-IBM_Plex md:text-[20px]`}>
@@ -49,7 +136,7 @@ export function NavBar(){
                                 </div>
                             </div>)
 
-                        : 
+                            : 
                             (<div className={style.contaniner_style}>
                                 <div className={`${style.border_container} ${style.border_container_top}`}></div>
                                 <div className={`${style.border_container} ${style.border_container_top} ${style.border_container_top_radius}`}></div>
@@ -64,6 +151,60 @@ export function NavBar(){
                             </div>) 
                         }
                     </div> */}
+
+                    {/* <div onClick={toggleStyle2} >
+                        {toggle2 ? 
+                            
+                            (<div className={style.contaniner_style2}>
+                                <div className={`${style.text_container2} font-IBM_Plex md:text-[20px]`}>
+                                    <IoIosList />
+                                    <p >LISTA DE ALUNOS</p>
+                                </div>
+                            </div>)
+
+                            : 
+                            (<div className={style.contaniner_style}>
+                                <div className={`${style.border_container} ${style.border_container_top}`}></div>
+                                <div className={`${style.border_container} ${style.border_container_top} ${style.border_container_top_radius}`}></div>
+
+                                <div className={`${style.border_container} ${style.border_container_bottom}`}></div>
+                                <div className={`${style.border_container}  ${style.border_container_bottom} ${style.border_container_bottom_radius}`}></div>
+
+                                <div className={`${style.text_container} font-IBM_Plex md:text-[20px]`}>
+                                    <IoIosList />
+                                    <p >LISTA DE ALUNOS</p>
+                                </div>
+                            </div>) 
+                        }
+                    </div>
+
+                    <div onClick={toggleStyle3} >
+                        {toggle3 ? 
+                            
+                            (<div className={style.contaniner_style2}>
+                                <div className={`${style.text_container2} font-IBM_Plex md:text-[20px]`}>
+                                    <IoIosList />
+                                    <p >LISTA DE ALUNOS</p>
+                                </div>
+                            </div>)
+
+                            : 
+                            (<div className={style.contaniner_style}>
+                                <div className={`${style.border_container} ${style.border_container_top}`}></div>
+                                <div className={`${style.border_container} ${style.border_container_top} ${style.border_container_top_radius}`}></div>
+
+                                <div className={`${style.border_container} ${style.border_container_bottom}`}></div>
+                                <div className={`${style.border_container}  ${style.border_container_bottom} ${style.border_container_bottom_radius}`}></div>
+
+                                <div className={`${style.text_container} font-IBM_Plex md:text-[20px]`}>
+                                    <IoIosList />
+                                    <p >LISTA DE ALUNOS</p>
+                                </div>
+                            </div>) 
+                        }
+                    </div> */}
+
+                   
 
                  </div>
             </div>

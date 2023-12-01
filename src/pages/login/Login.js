@@ -21,7 +21,7 @@ export function Login(){
                     </div>
 
                     <div>
-                        <Input label='Senha' name='email' type='text' placeholder='Digite seu senha'/>
+                        <Input label='Senha' name='email' type='password' placeholder='Digite seu senha'/>
                     </div>
 
                     <ButtonSubmit textBtn='Enviar'/>

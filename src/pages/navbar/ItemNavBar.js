@@ -1,17 +1,26 @@
 import style from './NavBar.module.css'
+import { IoIosList } from "react-icons/io";
 
-export function ItemNavBar({contaniner_style}){
+import { IconBase } from 'react-icons';
+
+
+export function ItemNavBar(props){
+    console.log(props.icon);
     return(
-            <div  className={`${contaniner_style}`}>
-            <div className={`${style.border_container} ${style.border_container_top}`}></div>
-            <div className={`${style.border_container} ${style.border_container_top} ${style.border_container_top_radius}`}></div>
+        <div  className={`${style[props.conStyle]}`}>
+            <div className={`${style[props.borCon]} ${style[props.borConT]}`}></div>
+            <div className={`${style[props.borCon]} ${style[props.borConT]} ${style[props.borConTR]}`}></div>
+            
+            <div className={`${style[props.borCon]} ${style[props.borConB]}`}></div>
+            <div className={`${style[props.borCon]} ${style[props.borConB]} ${style[props.borConBR]}`}></div>
 
-            <div className={`${style.border_container} ${style.border_container_bottom}`}></div>
-            <div className={`${style.border_container}  ${style.border_container_bottom} ${style.border_container_bottom_radius}`}></div>
 
-            <div className={`${style.text_container} font-IBM_Plex md:text-[20px]`}>
-                {/* <IoIosList /> */}
-                <p >LISTA DE ALUNOS</p>
+            <div className={`${style[props.textContainer]} font-IBM_Plex md:text-[20px]`}>
+
+                <>
+                    {props.icon}
+                </>          
+                <p >{props.text}</p>
             </div>
         </div>
     )

@@ -12,9 +12,9 @@ function App() {
   return (
     <div className='w-full h-[100vh]'>
       {/* {'validation' ? 'tela de login' : 'corpo do site'} */}
-      {/* <Login/> */}
+      <Login/>
 
-      <Home />
+      {/* <Home /> */}
 
 
       {/* <ListStudents/> */}
