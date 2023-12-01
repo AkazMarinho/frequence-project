@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-
+import axios from "axios";
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
           password: password,
         }
       );
-      console.log(managerId);
+      console.log();
     } catch (error) {
       console.error(error);
     }
