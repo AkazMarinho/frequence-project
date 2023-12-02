@@ -1,8 +1,40 @@
+import { useEffect } from "react";
 import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Input } from "../../Layout/input";
+import axios from "axios";
+
+import env from "react-dotenv";
 
 
 export function Login(){
+
+    // CNPJ: 333530590134
+    // SENHA: 1234
+    // TENANT: 1234
+
+    const API_URL = env.API_URL
+    console.log(env.API_URL);
+
+    useEffect(() => {
+        axios.post(`https://sfsystem.onrender.com/api/v1/admin/login`,
+        {
+            'cnpj' : 333530590134,
+            'password':1234
+        },
+        {
+            headers: {
+                'content-type': 'application/json'
+            },
+            params : {
+                'tenant' : '1234'
+            }
+        })
+        .then((resp) => {
+            console.log(resp);
+        })
+        .catch((err) => console.log(err))
+    });
+
     return(
         <div className="w-full h-full flex justify-center items-center">
             <div className=" w-[880px] h-[482px] bg-[#4983D4] flex justify-center items-center rounded-[10px] relative">
