@@ -1,4 +1,5 @@
 import style from './NavBar.module.css'
+import {Link } from "react-router-dom";
 
 
 import log from '../../img/Logos_UFPA.png'
@@ -33,7 +34,9 @@ export function NavBar(){
 
                 <div className='w-full'>
                     <div className='rounded-[50%] bg-[#fff] w-[65%]  mx-auto '>
-                        <img src={log} alt="logo" />
+                        <Link to='/login' >
+                            <img src={log} alt="logo" />
+                        </Link>
                     </div>
                     <div className='mx-auto font-IBM_Plex text-center text-[#fff] p-[1.56rem]'>
                         <h3 className='font-semibold text-base'>Seja bem vind@</h3>

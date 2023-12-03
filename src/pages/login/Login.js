@@ -13,6 +13,7 @@ export function Login(){
     const {Signin} = useContext(AuthContext)
 
     const [data, setData] = useState();
+    const [msg, setMsg] = useState();
 
     // CNPJ: 333530590134
     // SENHA: 1234
@@ -30,6 +31,7 @@ export function Login(){
         setData({...data, [e.target.name] : e.target.value})
     }
 
+    
     console.log(data);
 
     return(
@@ -63,6 +65,10 @@ export function Login(){
                             placeholder='Digite seu senha'
                             handleOnChange={handleOnChange}
                         />
+                    </div>
+
+                    <div>
+                        
                     </div>
 
                     <ButtonSubmit  textBtn='Enviar'/>
