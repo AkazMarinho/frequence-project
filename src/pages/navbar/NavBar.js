@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import style from "./NavBar.module.css";
+=======
+import style from './NavBar.module.css'
+import {Link } from "react-router-dom";
+>>>>>>> f339c670b8db26f8dd4982280a53c587b04c45cb
 
 import log from "../../img/Logos_UFPA.png";
 import { IoIosList } from "react-icons/io";
@@ -85,6 +90,7 @@ export function NavBar() {
           )}
         </div>
 
+<<<<<<< HEAD
         <div onClick={toggleStyle3}>
           {toggle3 ? (
             <ItemNavBar
@@ -189,3 +195,108 @@ export function NavBar() {
     </div>
   );
 }
+=======
+                <div className='w-full'>
+                    <div className='rounded-[50%] bg-[#fff] w-[65%]  mx-auto '>
+                        <Link to='/login' >
+                            <img src={log} alt="logo" />
+                        </Link>
+                    </div>
+                    <div className='mx-auto font-IBM_Plex text-center text-[#fff] p-[1.56rem]'>
+                        <h3 className='font-semibold text-base'>Seja bem vind@</h3>
+                        <h3 className='text-base'>de volta</h3>
+                    </div>
+
+                    <div onClick={toggleStyle1}>
+                        {toggle1 ? 
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    
+                                    text='LISTA DE ALUNOS'
+                                    icon={<IoIosList />}
+                                />
+                            ) 
+                            :
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style2' 
+                                    textContainer='text_container2'
+                                    
+                                    text='LISTA DE ALUNOS'
+                                    icon={<IoIosList />}
+                                />
+                            )
+                        }
+                    </div>
+
+                    <div onClick={toggleStyle2}>
+                        {toggle2 ? 
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    text='CADASTRO DE ALUNO'
+                                    icon={<IoIosList />}
+                                />
+                            ) 
+                            :
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style2' 
+                                    textContainer='text_container2'
+                                    
+                                    text='CADASTRO DE ALUNO'
+                                    icon={<IoIosList />}
+                                />
+                            )
+                        }
+                    </div>
+
+                    <div onClick={toggleStyle3}>
+                        {toggle3 ? 
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    
+                                    text='NOTAS'
+                                    icon={<IoIosList />}
+                                />
+                            ) 
+                            :
+                            (
+                                <ItemNavBar 
+                                    conStyle='contaniner_style2' 
+                                    textContainer='text_container2'
+                                    
+                                    text='NOTAS'
+                                    icon={<IoIosList />}
+                                />
+                            )
+                        }
+                    </div>
+
+                    
+
+                 </div>
+            </div>
+    )
+}
+>>>>>>> f339c670b8db26f8dd4982280a53c587b04c45cb
