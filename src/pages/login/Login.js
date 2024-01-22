@@ -1,41 +1,35 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Input } from "../../Layout/input";
-import axios from "axios";
-
-import env from "react-dotenv";
+import { Loader } from "../../Layout/Loader";
 
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 export function Login(){
 
-    const {Signin} = useContext(AuthContext)
-
+    const {Signin, setLoader, loader} = useContext(AuthContext)
     const [data, setData] = useState();
-    const [msg, setMsg] = useState();
 
     // CNPJ: 333530590134
     // SENHA: 1234
     // TENANT: 1234
 
-    const API_URL = env.API_URL
+    console.log(loader);
 
     const onSubmit = (e) => {
         e.preventDefault();
         Signin(data);
-        
+        setLoader(true)
+        console.log(loader);
     } 
 
     const handleOnChange = (e) => {
         setData({...data, [e.target.name] : e.target.value})
     }
-
-    
     console.log(data);
-
     return(
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full h-[100vh] flex justify-center items-center">
             <div className=" w-[880px] h-[482px] bg-[#4983D4] flex justify-center items-center rounded-[10px] relative">
 
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] top-[45px] left-[46px] w-[94px] h-[94px]"></div>
@@ -67,11 +61,9 @@ export function Login(){
                         />
                     </div>
 
-                    <div>
-                        
-                    </div>
-
                     <ButtonSubmit  textBtn='Enviar'/>
+
+                    {loader ? <Loader/> : <></>}
 
                 </form>
             </div>

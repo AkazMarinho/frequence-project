@@ -10,7 +10,7 @@ export function Input({type, name, placeholder, label, handleOnChange}){
                 id={name} 
                 placeholder={placeholder} 
                 onChange={handleOnChange}
-                className="
+                className={`
                     w-[460px] 
                     h-[38px]
                     outline-none 
@@ -20,7 +20,7 @@ export function Input({type, name, placeholder, label, handleOnChange}){
                     placeholder-[16px] 
                     rounded-[5px]
                     drop-shadow-[0_4px_4px_#00000040]
-                "
+                    `}
                     
             />
         </div>

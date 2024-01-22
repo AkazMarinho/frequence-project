@@ -1,0 +1,52 @@
+.content{
+    width: 100%;
+}
+.table_full{
+    width: 100%;
+    min-width: 800px;
+    overflow : hidden;
+}
+
+/* thead, 
+tbody,
+tr,
+td,
+tr
+{
+    border-bottom: 1px solid #000;
+} */
+
+.table_full td{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+
+}
+
+.table_full tr:hover{
+    background-color: #e6e2e2;
+
+}
+
+tbody, thead{
+    width: 800px;
+}
+
+
+.header_table, .body_table{
+    text-align: center;
+    /* text-align: center; */
+}
+
+.body_table svg{
+     margin: auto;
+}
+
+.body_table svg:hover{
+    color: #5840c6;
+}
+.header_table{
+    font-weight: bold;
+
+}

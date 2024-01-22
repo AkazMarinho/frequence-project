@@ -1,3 +1,3 @@
 window.env = {
-  "API_URL": "https://sfsystem.onrender.com"
+  "API_URL": "https://sfsystem.onrender.com/"
 };

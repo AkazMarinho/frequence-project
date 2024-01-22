@@ -1,12 +1,27 @@
-import { NavBar } from "../navbar/NavBar";
+import { useEffect } from "react";
+import { ListStudents } from "../Students/ListStudents";
 
+
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+
+import {StudentsProvider } from '../../context/StudentManager';
 
 export function Home(){
-    return (
-        <div className="bg-[#F1F1F1]">
-            <NavBar />
 
-            <p>{process.env.BASE_URL}</p>
+    // const {setLoader} = useContext(AuthContext)
+
+    // useEffect(() => {
+    //     setLoader(false)
+    //     localStorage.setItem("select", 1); //seta em local storage select como 1, e isso faz que na navbar seja mostrado a primeira seleção assim que for logado
+
+    // })
+
+    return (
+        <div className="bg-[#F1F1F1] p-[10px]  flex justify-center w-full overflow-hidden">
+
+            <ListStudents/>
+        
         </div>
     )
 }

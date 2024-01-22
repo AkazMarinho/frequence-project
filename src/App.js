@@ -2,41 +2,41 @@ import { RoutesApp } from "./routes/Routes";
 import { NavBar } from "./pages/navbar/NavBar";
 import { Login } from "./pages/login/Login.js";
 
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "./context/AuthProvider.js";
+
+import { useContext, useEffect } from "react";
+
+import {StudentsProvider } from './context/StudentManager.js';
+
 import Loader from "./Layout/Loader.js";
 
 function App() {
-  const {loader} =useContext(AuthContext)
-  const KeyAuth = localStorage.getItem("log");
+  
+  const log = localStorage.getItem("log");
 
-  const [validation, setValidation] = useState(KeyAuth)
-  const [jsx, setJsx] = useState('')
+  console.log("valiação 1:" + log);
 
-  useEffect(() => {
-    setValidation(KeyAuth)
-    console.log("validation: " + KeyAuth);
-  },[KeyAuth])
+  if(log == "true"){
+    
+    console.log("valiação 2:" +log);
+    return (
+      (
+      <div className='bg-[#f1f1f1] flex w-full h-full'>
+        <StudentsProvider>
+          <NavBar/> 
+          <RoutesApp/> 
 
-
+        </StudentsProvider>   
+      </div>
+      ))
+  }
 
   return (
 
       <div className='bg-[#f1f1f1] flex w-full h-full'>
-        
-        {loader && <Loader/>}
-
-        { validation == true ?
-          (<>
-            <NavBar/> 
-            <RoutesApp/> 
-            </>)
-        :
-            <Login/>
-        }
-        
+        <Login/>
       </div>
   );
 }
+
 
 export default App;
