@@ -1,4 +1,4 @@
-import {Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 import log from '../../img/Logos_UFPA.png'
 import { IoIosList } from "react-icons/io";
@@ -6,7 +6,11 @@ import { TbUserPlus } from "react-icons/tb";
 import { useEffect, useState } from 'react';
 import { ItemNavBar } from './ItemNavBar';
 
+
 export function NavBar(){
+
+    const Navigate = useNavigate(); //hook que direciona rotas quando especificadas
+
     const [toggle1, setToggle1] = useState(true)
     const [toggle2, setToggle2] = useState(false)
 
@@ -41,6 +45,8 @@ export function NavBar(){
         localStorage.removeItem("tenant");
         localStorage.removeItem("keyAuth");
         localStorage.setItem("log",false);
+        Navigate('/login')
+        window.location.reload()
     }
 
     return(
@@ -118,7 +124,7 @@ export function NavBar(){
             <div className='flex
                         justify-center
                         itens-auto pb-[30px]'>
-                <Link to='/login'>
+                {/* <Link to='/login'> */}
                     <button
                         onClick={exit}
                         className="
@@ -134,7 +140,7 @@ export function NavBar(){
                         >
                             Sair
                     </button>
-                </Link>
+                {/* </Link> */}
             </div>
         </div>
     )

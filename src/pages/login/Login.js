@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Input } from "../../Layout/input";
 import { Loader } from "../../Layout/Loader";
@@ -8,14 +8,20 @@ import { AuthContext } from "../../context/AuthProvider";
 
 export function Login(){
 
-    const {Signin, setLoader, loader} = useContext(AuthContext)
+    const {Signin, setLoader, loader, incorrectData} = useContext(AuthContext)
     const [data, setData] = useState();
+    const [incorrectAtt, setIncorrectAtt] = useState();
 
     // CNPJ: 333530590134
     // SENHA: 1234
     // TENANT: 1234
 
-    console.log(loader);
+    console.log("dados incorretos "+incorrectData);
+
+    useEffect(() => {
+
+        setIncorrectAtt(incorrectData)
+    }, [incorrectData])
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -60,6 +66,9 @@ export function Login(){
                             handleOnChange={handleOnChange}
                         />
                     </div>
+
+{incorrectAtt ? (<p className="text-[#FF0000] font-bold">Usuário ou senha incorreta!</p>) :  <></> }
+                    
 
                     <ButtonSubmit  textBtn='Enviar'/>
 

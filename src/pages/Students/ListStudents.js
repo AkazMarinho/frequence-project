@@ -1,94 +1,78 @@
 import style from './ListStudents.module.css'
 import { FaUserEdit } from "react-icons/fa";
 
-
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StudentsContext } from '../../context/StudentManager';
 
-import env from 'react-dotenv';
-
-import axios from 'axios';
+import {Link, useNavigate} from "react-router-dom";
 
 export function ListStudents(){
-  const URL = env.API_URL;
+  const Navigate = useNavigate();
 
-  console.log(URL);
   const {listStudent, listStudents} = useContext(StudentsContext)
+  const [listMap, setListMap] = useState()
+  console.log(listStudent);
+
   
   useEffect(() => {
-    console.log(listStudent);
-
-    // const listStudents = async () => {
-  
-    //   const keyAuth = localStorage.getItem("keyAuth"); //seta em local storage a apikey do usuario
-    //   const tenant = localStorage.getItem("tenant"); //seta em local storage o tenant do usuario
-  
-    //   try {
-    //       const response = await axios.get(`${URL}api/v1/students`,{
-    //           headers : {
-    //               // 'Content-Type': 'application/json',
-    //               "X-API-KEY" : keyAuth
-    //           },
-    //           params : {
-    //               'tenant' : tenant
-    //           },
-    //       });
-  
-    //       console.log(response);
-    //   } 
-    //   catch (error) {
-    //       console.log(error);
-    //   }
-    // }
     listStudents()
-  },[])
+    
+    setListMap(listStudent.data)
+
+    console.log(listMap);
+
+    console.log(listStudent.data);
+  }, [listStudent])
 
 
+  const handleList = () => {
+    Navigate('/frequency')
+  }
 
-    const list = [
-        {
-          "cpf": "34259731801",
-          "bornYear":2004,
-          "firstName": "Augusto",
-          "secondName":"Cunha",
-          "email": "AuCu@helponline-sti.com"
-        },
-        {
-          "cpf": "34259731802",
-          "bornYear":2002,
-          "firstName": "Isabela",
-          "secondName":"Santos",
-          "email": "IsaSo@helponline-sti.com"
-        },
-        {
-          "cpf": "34259731803",
-          "bornYear":2001,
-          "firstName": "Pedro",
-          "secondName":"Oliveira",
-          "email": "PeOl@helponline-sti.com"
-        },
-        {
-          "cpf": "34259731804",
-          "bornYear":2003,
-          "firstName": "Camila",
-          "secondName":"Costa",
-          "email": "CaCo@helponline-sti.com"
-        },
-        {
-          "cpf": "34259731805",
-          "bornYear":2003,
-          "firstName": "Rafael",
-          "secondName":"Lima",
-          "email": "RaLi@helponline-sti.com"
-        },
-        {
-          "cpf": "34259731806",
-          "bornYear":2002,
-          "firstName": "Mariana",
-          "secondName":"Silva",
-          "email": "MaSi@helponline-sti.com"
-        },
-      ]
+    // const list = [
+    //     {
+    //       "cpf": "34259731801",
+    //       "bornYear":2004,
+    //       "firstName": "Augusto",
+    //       "secondName":"Cunha",
+    //       "email": "AuCu@helponline-sti.com"
+    //     },
+    //     {
+    //       "cpf": "34259731802",
+    //       "bornYear":2002,
+    //       "firstName": "Isabela",
+    //       "secondName":"Santos",
+    //       "email": "IsaSo@helponline-sti.com"
+    //     },
+    //     {
+    //       "cpf": "34259731803",
+    //       "bornYear":2001,
+    //       "firstName": "Pedro",
+    //       "secondName":"Oliveira",
+    //       "email": "PeOl@helponline-sti.com"
+    //     },
+    //     {
+    //       "cpf": "34259731804",
+    //       "bornYear":2003,
+    //       "firstName": "Camila",
+    //       "secondName":"Costa",
+    //       "email": "CaCo@helponline-sti.com"
+    //     },
+    //     {
+    //       "cpf": "34259731805",
+    //       "bornYear":2003,
+    //       "firstName": "Rafael",
+    //       "secondName":"Lima",
+    //       "email": "RaLi@helponline-sti.com"
+    //     },
+    //     {
+    //       "cpf": "34259731806",
+    //       "bornYear":2002,
+    //       "firstName": "Mariana",
+    //       "secondName":"Silva",
+    //       "email": "MaSi@helponline-sti.com"
+    //     },
+    //   ]
 
     return(
             <div className={style.content}>
@@ -104,16 +88,20 @@ export function ListStudents(){
                     </thead>
 
                     <tbody>
-                        {list.map(idx =>(
-                            <tr className={style.body_table}>
-                                <td>{`${idx.firstName} ${idx.secondName}`}</td>
-                                <td>{idx.cpf}</td>
-                                <td>{idx.bornYear}</td>
-                                <td>{idx.email}</td>
-                                <td><a href="#"><FaUserEdit /></a> </td>
+                      {listMap &&
+                        listMap.map((idx, index) =>(
+                          <tr className={style.body_table} >
+                                <td onClick={handleList}>{`${idx.firstName} ${idx.secondName}`}</td>
+                                <td onClick={handleList}>{idx.studentId}</td>
+                                <td onClick={handleList}>{idx.bornYear}</td>
+                                <td onClick={handleList}>{idx.email}</td>
+                                <td onClick={() => localStorage.setItem("userlist", index)}><Link to='/att_student'>
+                                  <FaUserEdit />
+                                </Link> </td>
                             </tr>
                             )
-                        )}
+                        )
+                      }
                     </tbody>
                     
                     
