@@ -1,0 +1,83 @@
+.content{
+    width: 100%;
+    overflow : auto;
+    padding: 20px;
+
+    position: relative;
+}
+.content h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+.content span{
+    font-weight: 400;
+}
+
+.content select {
+    border: none;
+    width: 300px;
+    min-width: 300px;
+    height: 40px;
+    outline: none;
+    border-radius: 10px;
+    margin: 10px 0 10px;
+    background-color: #7daef7;
+    font-weight: bolder;
+}
+
+.altered{
+    background-color: #7daef7;
+    padding: 5px;
+    border-radius: 3px;
+    width: 80px;
+}
+
+
+ .topOption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    gap: 10px;
+ }
+.topOption button{
+   background-color: #7daef7;
+    height: 40px;
+    border-radius: 10px;
+    margin: 10px 0 10px;
+    width: 140px;
+}
+.altered:hover, .topOption button:hover{
+    background-color: #306abc;
+}
+.altered:active{
+    background-color: #799fd6;
+}
+
+.table_full{
+    width: 100%;
+    min-width: 520px;
+    
+}
+
+.internContent{
+    overflow : auto;
+
+}
+
+.table_full thead{
+    font-weight: bold;
+}
+
+.table_full tr{
+    border-bottom: 1px solid #000;
+    height: 50px;
+}
+.table_full tr:hover{
+    background-color: #e6e2e2;
+}
+
+.spanNotData{
+    font-weight: bold;
+    font-size: 20px;
+}

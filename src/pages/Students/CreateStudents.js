@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { StudentsContext } from "../../context/StudentManager";
 import { ButtonSubmit } from "../../Layout/ButtonSubmit";
+import { Loader } from "../../Layout/Loader";
 
 
 export function CreateStudents(){
@@ -12,9 +13,7 @@ export function CreateStudents(){
         console.log(resultCreateStudent);
     })
 
-
-
-    const {createStudent, resultCreateStudent} = useContext(StudentsContext)
+    const {createStudent, loader, resultCreateStudent} = useContext(StudentsContext)
     const Select = localStorage.getItem("select");
 
     const [data, setData] = useState()
@@ -51,12 +50,15 @@ export function CreateStudents(){
     return(
         <div className="flex bg-[#F1F1F1] p-[30px] w-full">
 
-            <div  className=" w-full h-[517px] bg-[#4983D4] flex justify-center items-center rounded-[10px] relative p-[30px]">
+            <div  className=" w-full bg-[#4983D4] flex justify-center items-center rounded-[10px] relative p-[30px]">
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] top-[45px] left-[46px] w-[94px] h-[94px]"></div>
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] top-[50px] right-[90px] w-[94px] h-[94px] z-[1]"></div>
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] bottom-[30px] left-[20px] w-[94px] h-[94px]"></div>
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] bottom-[80px] right-[40px] w-[94px] h-[94px]"></div>
-            <form onSubmit={onSubmit} className=" w-full z-10">
+
+                <form onSubmit={onSubmit} className=" w-full z-10">
+                <h1 className="text-center text-[30px] font-bold ">Criar novo aluno</h1>
+
                     <label htmlFor='firstName' className="block mb-[6px] text-[18px] font-bold">Primeiro nome</label>
                     <input 
                         type='text' 
@@ -172,8 +174,11 @@ export function CreateStudents(){
                         <ButtonSubmit textBtn='Enviar'/>
 
                     </div>
-            </form>
+                </form>
             </div>
+                     {loader ? <Loader/> : <></>}
+
+
             
         </div>
     )

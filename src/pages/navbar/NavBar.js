@@ -1,4 +1,4 @@
-import {Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 import log from '../../img/Logos_UFPA.png'
 import { IoIosList } from "react-icons/io";
@@ -6,7 +6,11 @@ import { TbUserPlus } from "react-icons/tb";
 import { useEffect, useState } from 'react';
 import { ItemNavBar } from './ItemNavBar';
 
+
 export function NavBar(){
+
+    const Navigate = useNavigate(); //hook que direciona rotas quando especificadas
+
     const [toggle1, setToggle1] = useState(true)
     const [toggle2, setToggle2] = useState(false)
 
@@ -16,6 +20,7 @@ export function NavBar(){
         localStorage.setItem("select",1);
     }
     function toggleStyle2(e){
+        Navigate('/frequency_download')
         setToggle1(false)
         setToggle2(true)
         localStorage.setItem("select",2);
@@ -41,6 +46,8 @@ export function NavBar(){
         localStorage.removeItem("tenant");
         localStorage.removeItem("keyAuth");
         localStorage.setItem("log",false);
+        // Navigate('/login')
+        window.location.reload()
     }
 
     return(
@@ -87,7 +94,7 @@ export function NavBar(){
                     </div>
                 </Link>
 
-                <Link to='/create_student'>
+                {/* <Link to='/create_student'> */}
                     <div onClick={toggleStyle2}>
                         {toggle2 ? 
                             (
@@ -99,7 +106,7 @@ export function NavBar(){
                                     borConB='border_container_bottom'
                                     borConBR='border_container_bottom_radius'
                                     textContainer='text_container'
-                                    text='CADASTRO DE ALUNO'
+                                    text='BAIXAR FREQUÊNCIA'
                                     icon={<TbUserPlus />}
                                 />
                             ):(
@@ -107,18 +114,18 @@ export function NavBar(){
                                     conStyle='contaniner_style2' 
                                     textContainer='text_container2'
                                     
-                                    text='CADASTRO DE ALUNO'
+                                    text='BAIXAR FREQUÊNCIA'
                                     icon={<TbUserPlus />}
                                 />
                             )
                         }
                     </div>
-                </Link>
+                {/* </Link> */}
             </div>
             <div className='flex
                         justify-center
                         itens-auto pb-[30px]'>
-                <Link to='/login'>
+                {/* <Link to='/login'> */}
                     <button
                         onClick={exit}
                         className="
@@ -134,7 +141,7 @@ export function NavBar(){
                         >
                             Sair
                     </button>
-                </Link>
+                {/* </Link> */}
             </div>
         </div>
     )

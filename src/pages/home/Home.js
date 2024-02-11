@@ -19,9 +19,7 @@ export function Home(){
 
     return (
         <div className="bg-[#F1F1F1] p-[10px]  flex justify-center w-full overflow-hidden">
-
             <ListStudents/>
-        
         </div>
     )
 }

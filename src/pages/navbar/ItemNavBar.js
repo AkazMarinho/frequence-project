@@ -5,7 +5,6 @@ import { IconBase } from 'react-icons';
 
 
 export function ItemNavBar(props){
-    console.log(props.icon);
     return(
         <div  className={`${style[props.conStyle]}`}>
             <div className={`${style[props.borCon]} ${style[props.borConT]}`}></div>
