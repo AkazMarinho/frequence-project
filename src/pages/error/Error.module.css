@@ -1,5 +1,5 @@
 .img{
-    width: 70vw; /* 100% da largura da viewport (tela) */
+    width: 100%; /* 100% da largura da viewport (tela) */
   height: 70vh; /* 100% da altura da viewport (tela) */
   object-fit: cover;
 }

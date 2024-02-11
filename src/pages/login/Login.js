@@ -16,8 +16,6 @@ export function Login(){
     // SENHA: 1234
     // TENANT: 1234
 
-    console.log("dados incorretos "+incorrectData);
-
     useEffect(() => {
 
         setIncorrectAtt(incorrectData)
@@ -27,13 +25,11 @@ export function Login(){
         e.preventDefault();
         Signin(data);
         setLoader(true)
-        console.log(loader);
     } 
 
     const handleOnChange = (e) => {
         setData({...data, [e.target.name] : e.target.value})
     }
-    console.log(data);
     return(
         <div className="w-full h-[100vh] flex justify-center items-center">
             <div className=" w-[880px] h-[482px] bg-[#4983D4] flex justify-center items-center rounded-[10px] relative">

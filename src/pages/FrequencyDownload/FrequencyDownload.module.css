@@ -1,0 +1,23 @@
+.content{
+    width: 100%;
+    padding: 10px;
+}
+
+.header h1{
+    
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.internContent{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+
+

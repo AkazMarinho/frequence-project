@@ -20,6 +20,7 @@ export function NavBar(){
         localStorage.setItem("select",1);
     }
     function toggleStyle2(e){
+        Navigate('/frequency_download')
         setToggle1(false)
         setToggle2(true)
         localStorage.setItem("select",2);
@@ -45,7 +46,7 @@ export function NavBar(){
         localStorage.removeItem("tenant");
         localStorage.removeItem("keyAuth");
         localStorage.setItem("log",false);
-        Navigate('/login')
+        // Navigate('/login')
         window.location.reload()
     }
 
@@ -93,7 +94,7 @@ export function NavBar(){
                     </div>
                 </Link>
 
-                <Link to='/create_student'>
+                {/* <Link to='/create_student'> */}
                     <div onClick={toggleStyle2}>
                         {toggle2 ? 
                             (
@@ -105,7 +106,7 @@ export function NavBar(){
                                     borConB='border_container_bottom'
                                     borConBR='border_container_bottom_radius'
                                     textContainer='text_container'
-                                    text='CADASTRO DE ALUNO'
+                                    text='BAIXAR FREQUÊNCIA'
                                     icon={<TbUserPlus />}
                                 />
                             ):(
@@ -113,13 +114,13 @@ export function NavBar(){
                                     conStyle='contaniner_style2' 
                                     textContainer='text_container2'
                                     
-                                    text='CADASTRO DE ALUNO'
+                                    text='BAIXAR FREQUÊNCIA'
                                     icon={<TbUserPlus />}
                                 />
                             )
                         }
                     </div>
-                </Link>
+                {/* </Link> */}
             </div>
             <div className='flex
                         justify-center
