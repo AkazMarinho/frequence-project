@@ -3,8 +3,14 @@ import { StudentsContext } from "../../context/StudentManager";
 import style from './Frequency.module.css'
 import { JustifyAbsence } from "./JustifyAbsence";
 
+import { AuthContext } from "../../context/AuthProvider";
 
 export function Frequency() {
+
+  const {isLogin} = useContext(AuthContext)
+  useEffect(()=>{
+    isLogin()
+  })
 
   const [selectedMonth, setSelectedMonth] = useState("1");
 

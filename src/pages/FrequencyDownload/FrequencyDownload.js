@@ -2,6 +2,7 @@ import style from './FrequencyDownload.module.css'
 import ModuleDownload from './ModuleDownload'
 import { useContext, useEffect, useState } from 'react';
 import { FrequencyContext } from '../../context/FrequencyProvider';
+import { AuthContext } from "../../context/AuthProvider";
 
 export function FrequencyDownload() {
 
@@ -24,6 +25,11 @@ export function FrequencyDownload() {
   }
 
   const [urlCSV, seturlCSV] = useState(null)
+
+  const {isLogin} = useContext(AuthContext)
+  useEffect(()=>{
+    isLogin()
+  })
 
   useEffect(()=>{
     if (frequencyDayCurrentDownloadURL) {

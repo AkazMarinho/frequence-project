@@ -6,10 +6,14 @@ import {StudentsProvider } from './context/StudentManager.js';
 import { QrcodeProvider } from "./context/QrcodeProvider.js";
 import { FrequencyProvider } from "./context/FrequencyProvider.js";
 
+import { useContext, useEffect } from "react";
+import { AuthContext } from "./context/AuthProvider.js";
+
 
 function App() {
-  
+
   const log = localStorage.getItem("log");
+
 
   if(log == "true"){
     

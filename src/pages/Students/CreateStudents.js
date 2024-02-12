@@ -6,7 +6,14 @@ import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Loader } from "../../Layout/Loader";
 
 
+import { AuthContext } from "../../context/AuthProvider";
+
 export function CreateStudents(){
+
+  const {isLogin} = useContext(AuthContext)
+  useEffect(()=>{
+    isLogin()
+  },)
 
     useEffect(() => {
         localStorage.setItem("select", 2); //seta em local storage select como 2, e isso faz que na navbar seja mostrado a segunda seleção

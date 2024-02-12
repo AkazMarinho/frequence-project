@@ -9,6 +9,11 @@ import {StudentsProvider } from '../../context/StudentManager';
 
 export function Home(){
 
+  const {isLogin} = useContext(AuthContext)
+  useEffect(()=>{
+    isLogin()
+  }, [])
+
     // const {setLoader} = useContext(AuthContext)
 
     // useEffect(() => {
