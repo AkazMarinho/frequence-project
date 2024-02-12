@@ -1,0 +1,68 @@
+.download_day{
+    width: 350px;
+    min-width: 250px;
+    background-color: #4983d4;
+    border-radius: 10px;
+    
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align:center;
+    flex-direction: column;
+    color: #e5e5e5;
+
+    position: relative;
+}
+
+.download_day span{
+    font-weight: bold;
+}
+.download_day label{
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+
+.download_day button{
+    width: 160px;
+    padding: 5px;
+    font-weight: bold;
+    background-color: #7daef7;
+    border-radius: 5px;
+    color: #000;
+}
+
+.download_day button:hover{
+    background-color: #76a3e2;
+}
+
+.download_day input{
+    color: #000;
+
+    width: 200px;
+    margin: 10px auto;
+    height: 30px;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+.errorSendData{
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-color:#a01c1a;
+    padding: 20px;
+}
+
+.errorSendData button{
+    width: 45px;
+    margin-top: 10px;
+        
+}
+.download_day button:hover{
+    background-color: #76a3e2;
+}

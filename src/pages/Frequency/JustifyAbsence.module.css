@@ -1,0 +1,88 @@
+.content{
+    width: 100%;
+}
+.internContent{
+    width: 500px;
+}
+
+.internContent, .internContentError{
+    border: 1px solid #b0b0b0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4983D4;
+    padding: 20px;
+    border-radius: 10px;
+    
+    z-index: 20;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.internContentError{
+    width: 400px;
+}
+
+.internContent h1{
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.close{
+    width: 100%;
+    /* padding-right: 20px; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+}
+.close svg {
+    font-size: 25px;
+}
+
+
+.dataInsert{
+    width: 100%;
+}
+
+.dataInsert label{
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    font-size: 18px;
+}
+
+.descrition textarea{
+    padding: 5px;
+    background-color: #faf7eb;
+}
+
+.date input{
+    background-color: #f2ecd2;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+    padding: 3px;
+
+}
+
+.internContent .button{
+    background-color: #134892;
+    width: 120px;
+     height: 35px;
+     border-radius: 5px;
+     margin-top: 15px;
+     color: #f2ecd2;
+}
+
+.internContent .button:hover{
+    background-color: #0b2b57;
+}
+
+.internContentError span{
+
+}
