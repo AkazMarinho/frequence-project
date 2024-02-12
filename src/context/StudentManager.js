@@ -153,8 +153,6 @@ export function StudentsProvider ({children}) {
 
     const [dataFrequencyPerMonth, setDataFrequencyPerMonth] = useState();
     const frequencyPerMonth = async (month) => { //rota reposnsavel por pegar a 
-        console.log(month);
-        
         try{
             const response = await axios.get(`${URL}api/v1/frequency/month/${month}`, 
             {

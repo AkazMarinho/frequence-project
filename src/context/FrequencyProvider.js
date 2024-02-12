@@ -79,51 +79,135 @@ export function FrequencyProvider ({children}){
     const frequencyDayCurrentDownload = async () => {
 
         console.log("Funionou");
-        try{
+        // try{
 
-            const response = await axios.get(`${URL}api/v1/frequency/sheet`,
-            {
-                headers : {
-                    'Content-Type': 'application/json',
-                    "X-API-KEY" : localData.keyAuth
-                },
-                params : {
-                    'tenant' : localData.tenant,
-                }
-        });
-        console.log(response);
+        //     const response = await axios.get(`${URL}api/v1/frequency/sheet`,
+        //     {
+        //         headers : {
+        //             'Content-Type': 'application/json',
+        //             "X-API-KEY" : localData.keyAuth
+        //         },
+        //         params : {
+        //             'tenant' : localData.tenant,
+        //         }
+        // });
+        // console.log(response);
 
-        if(response.status === 200){
+        // if(response.status === 200){
             
-            setFrequencyDayCurrentDownloadURL(response);
-        }
-        }
-        catch(error){
-            console.log(error);
+        //     setFrequencyDayCurrentDownloadURL(response);
+        // }
+        // }
+        // catch(error){
+        //     console.log(error);
+        // }
+
+        try {
+            // Faz a requisição para obter a resposta com os dados
+            const response = await axios.get(`${URL}api/v1/frequency/sheet`, {
+              headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': localData.keyAuth,
+              },
+              params: {
+                'tenant': localData.tenant,
+              },
+              responseType: 'blob', // Define o tipo de resposta como blob
+            });
+      
+            // Cria uma URL temporária para o blob de dados recebido na resposta
+            const url = window.URL.createObjectURL(new Blob([response]));
+      
+            // Cria um elemento <a> para simular o clique e iniciar o download
+            const a = document.createElement('a');
+            a.href = url;
+      
+            // Define o nome do arquivo a ser baixado (substitua pelo nome desejado)
+            a.download = 'arquivo_download.csv'; // Substitua pela extensão desejada
+      
+            // Adiciona o elemento ao corpo do documento
+            document.body.appendChild(a);
+      
+            // Simula o clique no elemento <a> para iniciar o download
+            a.click();
+        } catch (error){
+
         }
     }
 
     const frequencyDaySpecificDownload = async (data) => {
 
-        console.log("Funionou: " + data);
-        try{
+        // try{
 
-            const response = await axios.get(`${URL}api/v1/frequency/sheet`,
-            {
-                headers : {
-                    'Content-Type': 'application/json',
-                    "X-API-KEY" : localData.keyAuth
-                },
-                params : {
-                    'tenant' : localData.tenant,
-                    "date": data
-                }
-        });
-        console.log(response);
+        //     const response = await axios.get(`${URL}api/v1/frequency/sheet`,
+        //     {
+        //         headers : {
+        //             'Content-Type': 'application/json',
+        //             "X-API-KEY" : localData.keyAuth
+        //         },
+        //         params : {
+        //             'tenant' : localData.tenant,
+        //             "date": data
+        //         }
+        // });
+        // console.log(response);
+        // }
+        // catch(error){
+        //     console.log(error);
+        // }
+
+        try {
+            // Faz a requisição para obter a resposta com os dados
+            // const response = await axios.get(`${URL}api/v1/frequency/sheet`, {
+            //   headers: {
+            //     'Content-Type': 'application/json',
+            //     'X-API-KEY': localData.keyAuth,
+            //   },
+            //   params: {
+            //     'tenant': localData.tenant,
+            //     'date': data,
+            //   },
+            //   responseType: 'blob', // Define o tipo de resposta como blob
+            // });
+
+            // const a = document.createElement('a');
+            // a.href = response;
+            // a.download = 'arquivo_download.csv'; // Substitua pela extensão desejada
+      
+            // document.body.appendChild(a);
+            // a.target = '_blank';
+      
+            // a.click();
+
+            // Adiciona cabeçalhos como parâmetros de consulta na URL
+      const urlWithHeaders = `${URL}api/v1/frequency/sheet?Content-Type=application/json&X-API-KEY=${localData.keyAuth}&tenant=${localData.tenant}&date=${data}`;
+
+      // Faz a requisição para obter a resposta com os dados
+      const response = await axios.get(urlWithHeaders, { responseType: 'blob' });
+
+      // Cria uma URL temporária para o blob de dados recebido na resposta
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+
+      // Cria um elemento <a> para simular o clique e iniciar o download
+      const a = document.createElement('a');
+      a.href = url;
+
+      // Define o nome do arquivo a ser baixado
+      a.download = 'arquivo_download.csv';
+
+      // Adiciona o atributo target="_blank" para abrir em uma nova guia
+      a.target = '_blank';
+
+      // Adiciona o elemento ao corpo do documento
+      document.body.appendChild(a);
+
+      // Simula o clique no elemento <a> para iniciar o download
+      a.click();
+
+        } catch (error){
+
         }
-        catch(error){
-            console.log(error);
-        }
+        
     }
 
     return (

@@ -27,25 +27,26 @@ export function FrequencyDownload() {
 
   useEffect(()=>{
     if (frequencyDayCurrentDownloadURL) {
+      console.log(frequencyDayCurrentDownloadURL);
         
       //   seturlCSV(csvUrl);
-      setDonwloadCSV(
-        <div>
-            <a href={frequencyDayCurrentDownloadURL} 
-            // download={`cvs`}
-            >
-          fazer download
+      // setDonwloadCSV(
+      //   <div>
+      //       <a href={frequencyDayCurrentDownloadURL} 
+      //       // download={`cvs`}
+      //       >
+      //     fazer download
 
-            </a>
+      //       </a>
 
-          {/* <div>
-          fazer download
-          </div> */}
-          <button onClick={()=> setDonwloadCSV(null)}>
-            fechar
-          </button>
-        </div>
-      );
+      //     {/* <div>
+      //     fazer download
+      //     </div> */}
+      //     <button onClick={()=> setDonwloadCSV(null)}>
+      //       fechar
+      //     </button>
+      //   </div>
+      // );
     }
   }, [frequencyDayCurrentDownloadURL])
 
