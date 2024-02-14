@@ -89,7 +89,7 @@ export function Frequency() {
 
           <div className={style.topOption}>
 
-            <select id="Meses" name="Meses" onClick={handleSelection}>
+            <select id="Meses" name="Meses" onChange={handleSelection}>
               <option value="JANUARY">Janeiro</option>
               <option value="FEBRUARY">Fevereiro</option>
               <option value="MARCH">Março</option>

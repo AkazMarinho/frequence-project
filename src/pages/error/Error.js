@@ -19,7 +19,7 @@ export function Error() {
             <img src={error} alt="error 404" className={style.img} />
 
             <div className='w-full'>
-                <p className='font-bold text-[20px] mb-[10px]'><span className='text-[#b007a8] text-[40px] font-extrabold'>Ops!</span> A página que voce procura não foi encontrada.</p>
+                <p className='font-bold text-[20px] mb-[10px]'>A página que voce procura não foi encontrada.</p>
                 <Link to='/' className={style.link} onClick={toogleStyle}>
                     <ButtonSubmit textBtn='Ir para o início'/>
                     

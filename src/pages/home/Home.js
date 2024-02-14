@@ -9,10 +9,16 @@ import {StudentsProvider } from '../../context/StudentManager';
 
 export function Home(){
 
+
   const {isLogin} = useContext(AuthContext)
   useEffect(()=>{
     isLogin()
-  }, [])
+  }, []
+  )
+  useEffect(()=>{
+    localStorage.setItem("select",1);
+    
+  })
 
     // const {setLoader} = useContext(AuthContext)
 

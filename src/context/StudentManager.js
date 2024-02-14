@@ -23,24 +23,20 @@ export function StudentsProvider ({children}) {
     const [loader, setLoader] = useState(false); //seta como falso sistema de loading
 
     const [resultCreateStudent, setResultCreateStudent] = useState() //state repsonsavel por armazenar resposta de criação de alunos
+    const [resultCreateStudentError, setResultCreateStudentError] = useState(false) //state repsonsavel por armazenar resposta de criação de alunos
     //função de criaçã de um novo estudante
     const createStudent = async (data) => {
         setLoader(true); //ativa sistema de loading
-
-        //dados vindo do formulario de criação
-        const dataForm = {
-            "firstName" : data.firstName,
-            "secondName" : data.secondName,
-            "bornYear" : data.bornYear,
-            "cpf" : data.cpf,
-            "email" : data.email
-        }
 
         try{
 
             const response = await axios.post(`${URL}api/v1/students/${localData.idUser}`, //rota de criação de alunos
             {
-                dataForm,
+                "firstName" : data.firstName,
+                "secondName" : data.secondName,
+                "bornYear" : data.bornYear,
+                "cpf" : data.cpf,
+                "email" : data.email,
             }, {
                 headers : {
                     "Content-Type" : "application/json",
@@ -57,10 +53,14 @@ export function StudentsProvider ({children}) {
             if (response.status === 201){ //se a resposta for positiva e a requisição tiver sucesso..
                 Navigate('/'); //direciona para a tela de home
                 setLoader(false); //desativa sistema de loading
+                localStorage.setItem("select",1);
+            } else{
+                setResultCreateStudentError(true);
             }
         } catch (error) { //erro de requisição
             console.log(error); //mostra o erro
-            setResultCreateStudent(error) //??
+            setResultCreateStudentError(true);
+            setLoader(false); //desativa sistema de loading
         }
     }
 
@@ -115,9 +115,16 @@ export function StudentsProvider ({children}) {
                     'tenant' : localData.tenant
                 },
             });
-
+            
+            const compararPorNome = (a, b) => {
+                const nomeA = `${a.firstName} ${a.secondName}`;
+                const nomeB = `${b.firstName} ${b.secondName}`;
+                return nomeA.localeCompare(nomeB);
+            };
+            
+            const dadosOrdenados = response.data.sort(compararPorNome);
             if (response.status === 200) {
-                setListStudent(response.data);
+                setListStudent(dadosOrdenados);
             }
         } 
         catch (error) {
@@ -127,7 +134,6 @@ export function StudentsProvider ({children}) {
 
     const [dataFrequency, setDataFrequency] = useState();
     const frequency = async () => { //rota reposnsavel por pegar a 
-        // console.log(localData);
         
         try{
             const response = await axios.get(`${URL}api/v1/frequency`, 
@@ -141,6 +147,7 @@ export function StudentsProvider ({children}) {
                     "studentSkId" : localData.skId
                 }
             })
+
 
             if(response.status === 200) {
                 setDataFrequency(response.data)
@@ -166,8 +173,18 @@ export function StudentsProvider ({children}) {
                 }
             })
 
+            
+            const compararPorData = (a, b) => {
+                const dataA = new Date(a.date);
+                const dataB = new Date(b.date);
+                return dataA - dataB;
+            };
+            
+            // Ordena os dados por data
+            const dadosOrdenadosPorData = response.data.sort(compararPorData);
+
             if(response.status === 200) {
-                setDataFrequencyPerMonth(response.data)
+                setDataFrequencyPerMonth(dadosOrdenadosPorData)
             }
         }
         catch (error) {
@@ -186,7 +203,9 @@ export function StudentsProvider ({children}) {
             frequency, 
             dataFrequency, 
             dataFrequencyPerMonth,
-            frequencyPerMonth
+            frequencyPerMonth,
+            resultCreateStudentError,
+            setResultCreateStudentError
         }}>{children}</StudentsContext.Provider>
     )
 }

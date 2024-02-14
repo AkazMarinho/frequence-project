@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './ModuleDownload.module.css'
 
 
-export default function ModuleDownload({title, boolInput,sendFunction}) {
+export default function ModuleDownload({title, boolInput,sendFunction, dateCurrenty}) {
 
   const [dataInput, setDataInput] = useState();
   const [errorSendData, setErrorSendData] = useState(null);
@@ -34,6 +34,7 @@ export default function ModuleDownload({title, boolInput,sendFunction}) {
     }
   }
 
+
   const handleChangeInput = (e) =>{
     setDataInput(e.target.value);
   }
@@ -47,8 +48,9 @@ export default function ModuleDownload({title, boolInput,sendFunction}) {
 
           {boolInput === true && (
             <div>
-                <label >Escolha um dia para realizar o download</label>
+                <label >Escolha um dia para realizar a busca</label>
                 <input 
+                value={dateCurrenty}
                 name="date" 
                 id="date" 
                 type="date" 
@@ -65,6 +67,6 @@ export default function ModuleDownload({title, boolInput,sendFunction}) {
                 }>Verificar</button>
         </div>
 
-        </div>
+    </div>
   )
 }

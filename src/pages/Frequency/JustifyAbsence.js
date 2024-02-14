@@ -9,30 +9,52 @@ export function JustifyAbsence({title, descripstionAbsenceBoll, descripstionAbse
   const [dataAbsenceFrequency, setDataAbsenceFrequency] = useState();
   const {justifyAbsence,revokeJustifyAbsence, justifyAbsenceError, setJustifyAbsenceError} = useContext(FrequencyContext);
   
-  const [menssageError400, setMenssageError400] = useState(null);
+
+  const [menssageError, setMenssageError] = useState(null);
   useEffect(()=>{
-    if(justifyAbsenceError && justifyAbsenceError.response.status === 400){
-        // console.log("Ola");
-        setMenssageError400(
+    if(justifyAbsenceError === "badRequest" ){
+        setMenssageError(
             <div className={style.internContentError}>
                 <div className={style.close}>
-                    <button onClick={handleStateError}><IoIosCloseCircleOutline /></button>
+                    <button onClick={() => {
+                        setMenssageError(null)
+                        setJustifyAbsenceError(null)
+
+                    }}><IoIosCloseCircleOutline /></button>
                 </div>
                 <div>A falta já foi justificada nesta data.</div>
             </div>
             
         );
-        
-    } else{
+    } else if (justifyAbsenceError === "incompleteData" ){
+        setMenssageError(
+            <div className={style.internContentError}>
+                <div className={style.close}>
+                    <button onClick={() => {
+                        setMenssageError(null)
+                        setJustifyAbsenceError(null)
+
+                    }}><IoIosCloseCircleOutline /></button>
+                </div>
+                <span>Ocorreu um erro inesperado</span>
+                <span>Verifique se todos os campos estão preenchidos e tente novamente</span>
+                <button className={style.button} onClick={() => {
+                        setMenssageError(null)
+                        setJustifyAbsenceError(null)
+                 }}>
+                    Ok
+                </button>
+            </div>
+        );
+    }
+    else{
         setJustifyAbsenceError(null)
     }
-    // console.log(justifyAbsenceError.response.status);
   }, [justifyAbsenceError]);
 
-  const handleStateError = () =>{
-    setMenssageError400(null)
-
-  }
+//   const handleStateError = () =>{
+//     setMenssageError(null)
+//   }
 
   const handleState = (data) => {
     close(data)
@@ -56,7 +78,7 @@ export function JustifyAbsence({title, descripstionAbsenceBoll, descripstionAbse
         
         <div className={style.internContent}>
 
-            {menssageError400}
+            {menssageError}
 
             <div className={style.close}>
                 <button onClick={() => handleState(null)}><IoIosCloseCircleOutline /></button>
@@ -95,10 +117,7 @@ export function JustifyAbsence({title, descripstionAbsenceBoll, descripstionAbse
                         </div>
                     </>
                 )}
-
-
             </div>
-
             <button className={style.button} onClick={SubmitData}>Enviar</button>
 
         </div>

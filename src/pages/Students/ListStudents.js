@@ -76,76 +76,74 @@ export function ListStudents(){
       Navigate('/create_student')
     }
 
+   
+
     return(
-            <div className={style.content}>
-              {QRcodeData}
-              <div className={style.header}>
-                <h1>Lista de Alunos</h1>
-                <button onClick={handleClickCreateStudentButton}>
-                  Criar novo aluno
-                </button>
+      <div className={style.content}>
+        {QRcodeData}
+        <div className={style.header}>
+          <h1>Lista de Alunos</h1>
+          <button onClick={handleClickCreateStudentButton}>
+            Criar novo aluno
+          </button>
 
-              </div>
-              <div className={style.internContent}>
+        </div>
+        
+        <div className={style.internContent}>
 
-                <table className={style.table_full}>
-                    <thead>
-                        <tr className={style.header_table}>
-                            <td>Nome Completo</td>
-                            <td>CPF</td>
-                            <td>Ano de nascimento</td>
-                            <td>Email</td>
-                            <td>Ações</td>
-                        </tr>
-                    </thead>
+          <table className={style.table_full}>
+              <thead>
+                  <tr className={style.header_table}>
+                      <td>Nome Completo</td>
+                      <td>CPF</td>
+                      <td>Ano de nascimento</td>
+                      <td>Email</td>
+                      <td>Ações</td>
+                  </tr>
+              </thead>
 
-                    <tbody>
-                      {listStudent && 
-                        listStudent.map((idx, index) =>(
-                          <tr className={style.body_table} onClick={() => {
+              <tbody>
+                {listStudent && 
+                  listStudent.map((idx, index) =>(
+                    <tr className={style.body_table} onClick={() => {
+                      localStorage.setItem("studentSkId", idx.skid)
+                      localStorage.setItem("userlist", index)
+                      localStorage.setItem("studentInfo",`${idx.firstName} ${idx.secondName}` )
+                    }}>
+                      <td >{`${idx.firstName} ${idx.secondName}`}</td>
+                      <td >{idx.studentId}</td>
+                      <td >{idx.bornYear}</td>
+                      <td >{idx.email}</td>
+                      <td >
+                        <div className={style.linkActions}>
+                          <Link to='#'>
+                            <FaUserEdit />
+                          </Link> 
+                          <button onClick={() => {
+                            handleQRCodeButton()
+                          }}>
+                            <IoQrCodeSharp />
+                          </button>
+
+                          <button onClick={() => {
+                            handleList()
                             localStorage.setItem("studentSkId", idx.skid)
                             localStorage.setItem("userlist", index)
-                            localStorage.setItem("studentInfo",`${idx.firstName} ${idx.secondName}` )
-                          }}>
-                                <td >{`${idx.firstName} ${idx.secondName}`}</td>
-                                <td >{idx.studentId}</td>
-                                <td >{idx.bornYear}</td>
-                                <td >{idx.email}</td>
-                                <td >
-                                  <div className={style.linkActions}>
-                                    <Link to='#'>
-                                      <FaUserEdit />
-                                    </Link> 
-                                    <button onClick={() => {
-                                      handleQRCodeButton()
-                                      // localStorage.setItem("studentSkId", idx.skid)
-                                      console.log(idx.skid);
-
-                                    }}>
-                                      <IoQrCodeSharp />
-                                    </button>
-
-                                    <button onClick={() => {
-                                      handleList()
-                                      localStorage.setItem("studentSkId", idx.skid)
-                                      localStorage.setItem("userlist", index)
-                                      localStorage.setItem("studentInfo",`${idx.firstName} ${idx.secondName}`)
-                                    }
-                                      }>
-                                      <FaEye />
-                                    </button> 
-                                  </div>
-                                </td>
-                            </tr>
-                            )
-                        )
-                      }
-                    </tbody>
-                    
-                    
-                </table>
-              </div>
-            </div>
+                            localStorage.setItem("studentInfo",`${idx.firstName} ${idx.secondName}`)
+                          }
+                            }>
+                            <FaEye />
+                          </button> 
+                        </div>
+                      </td>
+                    </tr>
+                    )
+                  )
+                }
+              </tbody>
+          </table>
+        </div>
+      </div>
     
     )
 }
