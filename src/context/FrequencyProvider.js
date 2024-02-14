@@ -71,7 +71,7 @@ export function FrequencyProvider ({children}){
             }
         }
         catch (error){
-            // console.log(error)
+            console.log("error")
         }
     }
 
@@ -251,7 +251,7 @@ export function FrequencyProvider ({children}){
                 setListFrequencyPerDayData(response.data);
                 
             } catch (error) {
-                // console.log(error);
+                console.log("error");
             }
         }
     }
