@@ -19,12 +19,17 @@ function App() {
     
     return (
       (
-      <div className='bg-[#f1f1f1] flex w-full h-full'>
+      <div className='bg-[#f1f1f1] flex w-full h-full relative '>
         <StudentsProvider>
           <QrcodeProvider>
             <FrequencyProvider>
+              
 
+              <div className={` flex justify-between flex-col  h-[100vh] min-h-[560px] min-w-[13.75rem] max-w-[13.75rem] relative`}>
               <NavBar/> 
+
+              </div>
+
               <RoutesApp/> 
 
             </FrequencyProvider>

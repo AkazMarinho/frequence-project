@@ -3,6 +3,7 @@
 }
 .internContent{
     width: 500px;
+    background-color: #4983D4;
 }
 
 .internContent, .internContentError{
@@ -11,7 +12,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #4983D4;
     padding: 20px;
     border-radius: 10px;
     
@@ -25,7 +25,12 @@
 }
 
 .internContentError{
+    color: #fff;
     width: 400px;
+    background-color: #cc3300;
+    font-weight: bold;
+    text-align: center;
+
 }
 
 .internContent h1{
@@ -75,7 +80,8 @@
     width: 120px;
      height: 35px;
      border-radius: 5px;
-     margin-top: 15px;
+    box-shadow: 0 4px 6px #00000040;
+    margin-top: 15px;
      color: #f2ecd2;
 }
 

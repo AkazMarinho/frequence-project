@@ -1,3 +1,48 @@
-.input{
+.errorSendData{
+    position: absolute;
+    width: 31.25rem;
+    height: 18.75rem;
+    z-index: 11;
+    background-color: #cc3300;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.close{
+    width: 100%;
+    /* padding-right: 20px; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close svg {
+    font-size: 25px;
+}
+
+.errorSendData span{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.button{
+    background-color: #134892;
+    width: 120px;
+     height: 35px;
+     border-radius: 5px;
+    box-shadow: 0 4px 6px #00000040;
+    margin-top: 15px;
+     color: #f2ecd2;
+}
+
+.button:hover{
     background-color: #0b2b57;
 }

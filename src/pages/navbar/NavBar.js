@@ -20,7 +20,7 @@ export function NavBar(){
         localStorage.setItem("select",1);
     }
     function toggleStyle2(e){
-        Navigate('/frequency_download')
+        Navigate('/frequency_day')
         setToggle1(false)
         setToggle2(true)
         localStorage.setItem("select",2);
@@ -46,12 +46,11 @@ export function NavBar(){
         localStorage.removeItem("tenant");
         localStorage.removeItem("keyAuth");
         localStorage.setItem("log",false);
-        // Navigate('/login')
         window.location.reload()
     }
 
     return(
-        <div className={` flex justify-between flex-col w-[29.29%] h-[100vh] min-h-[560px] min-w-[200px] max-w-[300px] bg-[#4983D4] pt-[40px] rounded-r-[25px]`}>
+        <div className={` flex justify-between flex-col w-[13.75rem] h-[100vh] min-h-[560px] min-w-[13.75rem] max-w-[13.75rem] bg-[#4983D4] pt-[40px] rounded-r-[25px] fixed`}>
 
             <div className='w-full'>
                 <div className='rounded-[50%] bg-[#fff] w-[65%]  mx-auto '>
@@ -68,19 +67,19 @@ export function NavBar(){
                     <div onClick={toggleStyle1}>
                         {toggle1 ? 
                             ( <>
-                                    <ItemNavBar 
-                                        conStyle='contaniner_style' 
-                                        borCon='border_container' 
-                                        borConT='border_container_top'
-                                        borConTR='border_container_top_radius'
-                                        borConB='border_container_bottom'
-                                        borConBR='border_container_bottom_radius'
-                                        textContainer='text_container'
-                                        
-                                        text='LISTA DE ALUNOS'
-                                        icon={<IoIosList />}
-                                    />
-                                </> 
+                                <ItemNavBar 
+                                    conStyle='contaniner_style' 
+                                    borCon='border_container' 
+                                    borConT='border_container_top'
+                                    borConTR='border_container_top_radius'
+                                    borConB='border_container_bottom'
+                                    borConBR='border_container_bottom_radius'
+                                    textContainer='text_container'
+                                    
+                                    text='LISTA DE ALUNOS'
+                                    icon={<IoIosList />}
+                                />
+                            </> 
                             
                             ):(
                                 <ItemNavBar 
@@ -106,7 +105,7 @@ export function NavBar(){
                                     borConB='border_container_bottom'
                                     borConBR='border_container_bottom_radius'
                                     textContainer='text_container'
-                                    text='BAIXAR FREQUÊNCIA'
+                                    text='FREQUÊNCIA'
                                     icon={<TbUserPlus />}
                                 />
                             ):(
@@ -114,7 +113,7 @@ export function NavBar(){
                                     conStyle='contaniner_style2' 
                                     textContainer='text_container2'
                                     
-                                    text='BAIXAR FREQUÊNCIA'
+                                    text='FREQUÊNCIA'
                                     icon={<TbUserPlus />}
                                 />
                             )

@@ -4,11 +4,17 @@ import { useContext } from "react";
 import { StudentsContext } from "../../context/StudentManager";
 import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Loader } from "../../Layout/Loader";
+import style from './CreateStudent.module.css'
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 
 
 import { AuthContext } from "../../context/AuthProvider";
 
 export function CreateStudents(){
+    
+  const {createStudent, loader, resultCreateStudent, resultCreateStudentError, setResultCreateStudentError} = useContext(StudentsContext)
+  const Select = localStorage.getItem("select");
 
   const {isLogin} = useContext(AuthContext)
   useEffect(()=>{
@@ -17,11 +23,9 @@ export function CreateStudents(){
 
     useEffect(() => {
         localStorage.setItem("select", 2); //seta em local storage select como 2, e isso faz que na navbar seja mostrado a segunda seleção
-        console.log(resultCreateStudent);
+        // console.log(resultCreateStudent);
     })
 
-    const {createStudent, loader, resultCreateStudent} = useContext(StudentsContext)
-    const Select = localStorage.getItem("select");
 
     const [data, setData] = useState()
     const [menYear, setMenYear] = useState('')
@@ -52,12 +56,25 @@ export function CreateStudents(){
         )
         setData({...data, [e.target.name] : e.target.value})
     }
+
+
     
-    console.log(data)
     return(
-        <div className="flex bg-[#F1F1F1] p-[30px] w-full">
+        <div className="flex bg-[#F1F1F1] p-[30px] w-full ">
 
             <div  className=" w-full bg-[#4983D4] flex justify-center items-center rounded-[10px] relative p-[30px]">
+                {resultCreateStudentError === true && (
+                    <div className={style.errorSendData}>
+                        <div className={style.close}>
+                            <button onClick={()=>setResultCreateStudentError(false)}><IoIosCloseCircleOutline /></button>
+                        </div>
+                        <span>Ocorreu um erro inesperado, verifique se todos os campos estão preenchidos e tente novamente</span>
+
+                        <button className={style.button} onClick={()=>setResultCreateStudentError(false)}>
+                            Ok
+                        </button>
+                    </div>
+                )}
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] top-[45px] left-[46px] w-[94px] h-[94px]"></div>
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] top-[50px] right-[90px] w-[94px] h-[94px] z-[1]"></div>
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] bottom-[30px] left-[20px] w-[94px] h-[94px]"></div>

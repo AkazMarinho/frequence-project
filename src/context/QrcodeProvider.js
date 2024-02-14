@@ -29,8 +29,6 @@ export function QrcodeProvider({children}) {
                 }
             })
 
-            console.log(response);
-
             if(response.status === 200){
                 setQRcodeImageData(response.data);
             }

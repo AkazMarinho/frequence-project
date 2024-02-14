@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
         }
       });
 
-      console.log(response, response.data);
+      // console.log(response, response.data);
 
       if (response.status !== 200) {
         Navigate('./login')
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     }
     catch(error){
       console.log(error);
-      Navigate('./login')
+      // Navigate('./login')
       localStorage.setItem("log",false);
       window.location.reload();
     }

@@ -13,7 +13,7 @@ export const RoutesApp = () => {
             < Route path="/login" element={<Login/> } />
             < Route path="/create_student" element={<CreateStudents/> } />
             < Route path="/att_student" element={<AttStudent/> } />
-            < Route path="/frequency_download" element={<FrequencyDownload/> } />
+            < Route path="/frequency_day" element={<FrequencyDownload/> } />
             < Route path="/frequency" element={<Frequency/> } />
             < Route exact path="/" element={<Home/> } />
             < Route exact path="/*" element={<Error/> } />
