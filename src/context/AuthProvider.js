@@ -1,6 +1,5 @@
 
-
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState} from "react";
 import axios from "axios";
 import env from "react-dotenv";
 import { useNavigate } from "react-router-dom";
@@ -31,8 +30,6 @@ export function AuthProvider({ children }) {
             "tenant": localData.tenant,
         }
       });
-
-      // console.log(response, response.data);
 
       if (response.status !== 200) {
         Navigate('./login')
