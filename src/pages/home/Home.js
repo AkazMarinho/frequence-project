@@ -5,10 +5,8 @@ import { ListStudents } from "../Students/ListStudents";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
-import {StudentsProvider } from '../../context/StudentManager';
 
 export function Home(){
-
 
   const {isLogin} = useContext(AuthContext)
   useEffect(()=>{
@@ -19,6 +17,11 @@ export function Home(){
     localStorage.setItem("select",1);
     
   })
+
+  useEffect(()=>{
+    localStorage.setItem("select",1);
+    
+  }, )
 
     // const {setLoader} = useContext(AuthContext)
 

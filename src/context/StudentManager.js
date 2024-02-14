@@ -9,7 +9,7 @@ export function StudentsProvider ({children}) {
 
     const Navigate = useNavigate(); //hook de direcionamento
 
-    //dados recebidos do local staorage
+    //dados recebidos do local storage
     const localData = { 
         "skId" : localStorage.getItem("studentSkId"), //seta em local storage a apikey do usuario,
         "keyAuth" : localStorage.getItem("keyAuth"), //seta em local storage a apikey do usuario,
@@ -26,7 +26,7 @@ export function StudentsProvider ({children}) {
     const [resultCreateStudentError, setResultCreateStudentError] = useState(false) //state repsonsavel por armazenar resposta de criação de alunos
     //função de criaçã de um novo estudante
     const createStudent = async (data) => {
-        setLoader(true); //ativa sistema de loading
+        // setLoader(true); //ativa sistema de loading
 
         try{
 
@@ -41,7 +41,6 @@ export function StudentsProvider ({children}) {
                 headers : {
                     "Content-Type" : "application/json",
                     "X-API-KEY" : localData.keyAuth
-
                 },
                 params: {
                     "tenant" : localData.tenant
@@ -52,7 +51,7 @@ export function StudentsProvider ({children}) {
 
             if (response.status === 201){ //se a resposta for positiva e a requisição tiver sucesso..
                 Navigate('/'); //direciona para a tela de home
-                setLoader(false); //desativa sistema de loading
+                // setLoader(false); //desativa sistema de loading
                 localStorage.setItem("select",1);
             } else{
                 setResultCreateStudentError(true);
@@ -65,41 +64,41 @@ export function StudentsProvider ({children}) {
     }
 
     //função de criaçã de atualização de estudante
-    const AttStudent = async (data) => { //sistema de atualização de alunos (contém erros)
-        setLoader(true);
+    // const AttStudent = async (data) => { //sistema de atualização de alunos (contém erros)
+    //     setLoader(true);
 
-        const dataForm = {
-            "firstName" : data.firstName,
-            "secondName" : data.secondName,
-            "bornYear" : data.bornYear,
-            "cpf" : data.cpf,
-            "email" : data.email
-        }
+    //     const dataForm = {
+    //         "firstName" : data.firstName,
+    //         "secondName" : data.secondName,
+    //         "bornYear" : data.bornYear,
+    //         "cpf" : data.cpf,
+    //         "email" : data.email
+    //     }
 
-        try{
+    //     try{
 
-            const response = await axios.post(`${URL}api/v1/students/${localData.idUser}`,
-            {
-                dataForm
-            }, {
-                headers : {
-                    "Content-Type" : "application/json",
-                    "X-API-KEY" : localData.KeyAuth
-                },
-                params: {
-                    "tenant" : localData.Keytenant
-                }
-            })
+    //         const response = await axios.post(`${URL}api/v1/students/${localData.idUser}`,
+    //         {
+    //             dataForm
+    //         }, {
+    //             headers : {
+    //                 "Content-Type" : "application/json",
+    //                 "X-API-KEY" : localData.KeyAuth
+    //             },
+    //             params: {
+    //                 "tenant" : localData.Keytenant
+    //             }
+    //         })
 
-            if (response.status === 201){
-                Navigate('/');
-                setLoader(false);
-            }
-        } catch (error) {
-            console.log(error)
-            setResultCreateStudent(error)
-        }
-    }
+    //         if (response.status === 201){
+    //             Navigate('/');
+    //             setLoader(false);
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //         setResultCreateStudent(error)
+    //     }
+    // }
 
     const [listStudent, setListStudent] = useState([])
     //função de criaçã de listagem de estudantes
@@ -131,6 +130,34 @@ export function StudentsProvider ({children}) {
             console.log(error);
         }
     }
+    // const [listStudent, setListStudent] = useState([])
+    //função de criaçã de listagem de estudantes
+    const deleteStudent = async () => {
+
+        try {
+            const response = await axios.delete(`${URL}api/v1/students`,{ //rota para listagem de aluns no banco de dados
+                headers : {
+                    'Content-Type': 'application/json',
+                    "X-API-KEY" : localData.keyAuth
+                },
+                params : {
+                    'tenant' : localData.tenant,
+                    
+                    "studentSkId" : localData.skId
+                },
+            });
+
+        console.log(response.status);
+            
+            
+            // if (response.status === 200) {
+            //     setListStudent(dadosOrdenados);
+            // }
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
 
     const [dataFrequency, setDataFrequency] = useState();
     const frequency = async () => { //rota reposnsavel por pegar a 
@@ -147,8 +174,6 @@ export function StudentsProvider ({children}) {
                     "studentSkId" : localData.skId
                 }
             })
-
-
             if(response.status === 200) {
                 setDataFrequency(response.data)
             }
@@ -199,13 +224,13 @@ export function StudentsProvider ({children}) {
             listStudents, 
             createStudent, 
             resultCreateStudent, 
-            AttStudent, 
+            deleteStudent,
             frequency, 
             dataFrequency, 
             dataFrequencyPerMonth,
             frequencyPerMonth,
             resultCreateStudentError,
-            setResultCreateStudentError
+            setResultCreateStudentError, 
         }}>{children}</StudentsContext.Provider>
     )
 }
