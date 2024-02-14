@@ -1,0 +1,51 @@
+.errorContent{
+    background-color: #4B8BE4;
+    position: absolute;
+    padding: 1.25rem;
+    top: 50%;
+    left: 50%;
+    width: 25rem;
+    border-radius: .625rem;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    background-color: #134892;
+    width: 9.5rem;
+    height: 3.5rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 4px 6px #00000040;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.errorContent span{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.button:hover{
+    background-color: #0b2b57;
+}
+
+.button span{
+    font-size: 1rem;
+}
+
+.close{
+    margin-top: -10px ;
+    margin-right: -10px ;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+}
+.close svg {
+    font-size: 25px;
+}

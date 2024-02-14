@@ -1,10 +1,13 @@
-import style from './FrequencyDownload.module.css'
+import style from './FrequencyDownload.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { FrequencyContext } from '../../context/FrequencyProvider';
 import { AuthContext } from "../../context/AuthProvider";
+import { useNavigate } from 'react-router-dom';
 
 export function FrequencyDownload() {
 
+
+  const Navigate = useNavigate();
   const {isLogin} = useContext(AuthContext);
 
   const {
@@ -12,12 +15,19 @@ export function FrequencyDownload() {
     listFrequencyPerDayData
   } = useContext(FrequencyContext);
 
+  const handleList = () => {
+    localStorage.setItem("select",1);
+    Navigate('/frequency');
+  }
+
   const [data, setData] = useState('');
   const [dataInput, setDataInput] = useState(null);
   const [dataResponse, setDataResponse] = useState();
   
   useEffect(()=>{
     isLogin();
+    localStorage.setItem("select",2);
+
   })
   
   useEffect(()=>{
@@ -145,13 +155,18 @@ export function FrequencyDownload() {
                   </thead>
                   <tbody className={style.tbody}>
                     {dataResponse.map( (item, index) => (
-                      <tr>
+                      <tr onClick={() =>{
+                        handleList()
+                        localStorage.setItem("studentSkId", item.skid)
+                        localStorage.setItem("userlist", index)
+                        localStorage.setItem("studentInfo",`${item.firstName} ${item.secondName}`)
+                      }} >
+                        {/* {} */}
                         <td className={style.index}>
                           {index+1}
                         </td>
                         <td>
-                        {`${item.firstName} ${item.secondName
-}`}
+                        {`${item.firstName} ${item.secondName}`}
 
                         </td>
                       </tr>

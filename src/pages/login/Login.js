@@ -1,30 +1,38 @@
 import {useEffect, useState } from "react";
-import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Input } from "../../Layout/input";
 import { Loader } from "../../Layout/Loader";
+import style from './Login.module.css'
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 export function Login(){
 
-    const {Signin, setLoader, loader, incorrectData} = useContext(AuthContext)
+    const {Signin, setLoader, loader,  errorSignin, setErrorSignin} = useContext(AuthContext)
     const [data, setData] = useState();
-    const [incorrectAtt, setIncorrectAtt] = useState();
+
+    const [error, setError] = useState(null)
+
+    useEffect(()=>{
+        if(errorSignin && errorSignin === "errorConect"){
+            setError("errorConect")
+        } else if(errorSignin === "errorBadRequest"){
+            setError("badRequest")
+        }
+    }, [errorSignin])
 
     // CNPJ: 333530590134
     // SENHA: 1234
     // TENANT: 1234
 
-    useEffect(() => {
-
-        setIncorrectAtt(incorrectData)
-    }, [incorrectData])
-
     const onSubmit = (e) => {
         e.preventDefault();
         Signin(data);
         setLoader(true)
+        setError(null)
+
     } 
 
     const handleOnChange = (e) => {
@@ -39,7 +47,28 @@ export function Login(){
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] bottom-[30px] left-[20px] w-[94px] h-[94px]"></div>
                 <div className="bg-[#4B8BE4] absolute rounded-[50%] bottom-[80px] right-[40px] w-[94px] h-[94px]"></div>
 
-                <form onSubmit={onSubmit} className="w-[522px] h-[405px] bg-[#F5F6F8] flex flex-col justify-around items-center p-[30px] rounded-[10px] z-[2]">
+                <form className="w-[522px] h-[405px] bg-[#F5F6F8] flex flex-col justify-around items-center p-[30px] rounded-[10px] z-[2] relative">
+                    {errorSignin === 'errorConect' && (
+                        <div className={style.errorContent}>
+                            <div className={style.close}>
+                                <button 
+                                    onClick={() => {
+                                        setErrorSignin(null)
+                                    }}
+                                >
+                                    <IoIosCloseCircleOutline />
+                                </button>
+                            </div>
+                            <span>Erro ao conectar ao servidor</span>
+                            <a href="mailto:softwarev3house@gmail.com" target="_blank" rel="noreferrer">
+                                <button className={style.button}>
+                                     <span className="text-[#ffffff] text-[16px]">Contactar desenvolvedores</span> 
+                                </button>
+                            </a>
+                        </div>
+                        
+                    )}
+
 
                     <h1 className="text-[28px] font-bold">Entrar</h1>
 
@@ -63,12 +92,15 @@ export function Login(){
                         />
                     </div>
 
-{incorrectAtt ? (<p className="text-[#FF0000] font-bold">Usuário ou senha incorreta!</p>) :  <></> }
-                    
+                    {error === "badRequest" && 
+                        <p className="text-[#FF0000] font-bold">Usuário ou senha incorreta!</p>
+                    }
+                    <button onClick={onSubmit} className="bg-[#134892] w-[178px] h-[44px] rounded-[7px] drop-shadow-[0_4px_6px_#00000040] hover:bg-[#0b2b57] flex justify-center gap-[0.6rem] items-center">
+                        <span className="text-[#ffffff] text-[22px]" >Entrar</span> 
+                        {loader ? <Loader/> : <></>}
+                    </button>
 
-                    <ButtonSubmit  textBtn='Enviar'/>
-
-                    {loader ? <Loader/> : <></>}
+                    {/* {loader ? <Loader/> : <></>} */}
 
                 </form>
             </div>

@@ -11,7 +11,6 @@ export function AuthProvider({ children }) {
   const Navigate = useNavigate();
 
   const [loader, setLoader] = useState(false);
-  const [incorrectData, setIncorrectData] = useState(false);
   const [dataAuth, setAuth] = useState();
 
   const isLogin = async () =>{
@@ -44,6 +43,7 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const [errorSignin, setErrorSignin] = useState(null)
   const Signin = async (data) => {
     setLoader(true);
 
@@ -74,21 +74,22 @@ export function AuthProvider({ children }) {
       if (response.status === 200) {
         Navigate("/");
         window.location.reload();
-      } else{
-        setIncorrectData(true)
-
       }
     } catch (error) {
-      console.log(error.name);
       setLoader(false);
-      setIncorrectData(true)
+      if (error.response && error.response.status === 400) {
+        setErrorSignin("errorBadRequest");
+        console.log(error.response.status);
+      } else {
+        setErrorSignin("errorConect");
+      }
 
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ Signin, setAuth, dataAuth, setLoader, loader, incorrectData, setIncorrectData, isLogin }}
+      value={{ Signin, setAuth, dataAuth, setLoader, loader,isLogin, errorSignin, setErrorSignin}}
     >
       {children}
     </AuthContext.Provider>

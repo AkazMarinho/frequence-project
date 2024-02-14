@@ -3,9 +3,8 @@ import {Link, useNavigate } from "react-router-dom";
 import log from '../../img/Logos_UFPA.png'
 import { IoIosList } from "react-icons/io";
 import { TbUserPlus } from "react-icons/tb";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext} from 'react';
 import { ItemNavBar } from './ItemNavBar';
-
 
 export function NavBar(){
 
@@ -45,6 +44,15 @@ export function NavBar(){
     const exit = () => {
         localStorage.removeItem("tenant");
         localStorage.removeItem("keyAuth");
+        localStorage.removeItem("keyAuth");
+        localStorage.removeItem("studentInfo");
+        localStorage.removeItem("select");
+        localStorage.removeItem("userlist");
+        localStorage.removeItem("R7sT3pL9oQ2aX1iF5gU0rD8sM6");
+        localStorage.removeItem("studentSkId");
+        localStorage.removeItem("a2Bc9E4fGhI1jKlM7nOpQr3tUvX5wYz8");
+        localStorage.removeItem("date");
+
         localStorage.setItem("log",false);
         window.location.reload()
     }

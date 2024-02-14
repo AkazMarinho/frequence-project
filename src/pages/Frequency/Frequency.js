@@ -1,26 +1,33 @@
 import { useEffect, useContext, useState } from "react"
 import { StudentsContext } from "../../context/StudentManager";
 import style from './Frequency.module.css'
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { JustifyAbsence } from "./JustifyAbsence";
+
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/AuthProvider";
 
 export function Frequency() {
 
+  const Navigate = useNavigate()
+
   const {isLogin} = useContext(AuthContext)
   useEffect(()=>{
     isLogin()
-  })
+  });
 
-  const [selectedMonth, setSelectedMonth] = useState("1");
-
-  const {frequency, dataFrequency, frequencyPerMonth, dataFrequencyPerMonth} = useContext(StudentsContext);
+  const {frequency, dataFrequency, frequencyPerMonth, dataFrequencyPerMonth, deleteStudent} = useContext(StudentsContext);
 
   const studentInfo = localStorage.getItem("studentInfo");
 
   useEffect(() => {
     frequency();
   }, []);
+
+  const confirmDelete = () =>{
+    deleteStudent();
+  }
 
   function formatarData(dataString) {//dataString - February 6, 2024
     const meses = {
@@ -38,18 +45,12 @@ export function Frequency() {
       December: '12',
     };
   
-
     const [year, month, day ] = dataString.split('-');
     // const day = dayWithComma.replace('', '');
-    const mesNumerico = meses[month];
-
-
     const diaFormatado = day.length === 1 ? `0${day}` : day;
-  
     return `${diaFormatado}/${month}/${year}`;
 
   }
-
   const [valueMonth, setValueMonth] = useState("JANUARY");
 
   const handleSelection = (e) => {
@@ -76,12 +77,33 @@ export function Frequency() {
       <JustifyAbsence title="Justificar falta" descripstionAbsenceBoll={false} descripstionAbsenceTitle="Motivo" close={setDateAbsence}/>
     ))
   }
+  const [del , setDel] =useState(null)
+  const handleDel = () => {
+    setDel(true)
+  }
   
   return (
     <div className={style.content}>
       <div className="w-full">
 
-        {dateAbsence}
+      {del === true && 
+        <div className={style.deleteContent}>
+          <div className={style.close}>
+              <button onClick={() => {
+                setDel(false)
+              }}><IoIosCloseCircleOutline /></button>
+          </div>
+          <span>Os dados serão excluidos permanente</span>
+          <span>Confirmar exclusão?</span>
+          <button onClick={() => {
+            confirmDelete()
+            setDel(false)
+            Navigate("/")
+          }} className={style.button}>OK</button>
+        </div>
+      }
+
+      {dateAbsence}
       </div>
       {dataFrequency && (
         <div >
@@ -104,52 +126,56 @@ export function Frequency() {
               <option value="DECEMBER">Dezembro</option>
             </select>
 
+            <div className={style.delete}>
+              <button className={style.buttonDeL} onClick={handleDel}>Excluir aluno </button>
+
+            </div>
             <div>
-              <button onClick={handleAddDateAbsece}>Justificar falta</button>
+              <button className={style.buttonJus}  onClick={handleAddDateAbsece}>Justificar falta</button>
             </div>
           </div>
 
 
-            <div className={style.internContent}>
-              {dataFrequencyPerMonth && dataFrequencyPerMonth.length > 0 ? (
-                <table className={style.table_full}>
-                  <thead>
-                    <tr>
-                      <td>Dia</td>
-                      <td>Status</td>
-                      <td>Descrição</td>
-                      <td>Ações</td>
-                    </tr>
-                  </thead>
+          <div className={style.internContent}>
+            {dataFrequencyPerMonth && dataFrequencyPerMonth.length > 0 ? (
+              <table className={style.table_full}>
+                <thead>
+                  <tr>
+                    <td>Dia</td>
+                    <td>Status</td>
+                    <td>Descrição</td>
+                    <td>Ações</td>
+                  </tr>
+                </thead>
                 <tbody>
+                  {dataFrequencyPerMonth.map((item, index) => (
+                    <tr key={index} > 
+                    
+                        <td>{formatarData(item.date)}</td>
+
+                        <td>{item.justified ? 
+                          "Falta justificada"
+                          : 
+                          "Presente"}
+                        </td>
+
+                        <td>{item.description}</td>
+
+                        {item.justified === true &&
+                          <td><button className={style.altered} onClick={() => {
+                            handleDateAbsece(item.justified, item.date, formatarData(item.date))
+                          }}>Alterar</button></td>}
+                      </tr>
+                  ))}
                 </tbody>
-                {dataFrequencyPerMonth.map((item, index) => (
-                  <tr key={index} > 
-                  {/* {console.log(item)} */}
-                      <td>{formatarData(item.date)}</td>
-                      <td>{item.justified ? 
-                        "Falta justificada"
-                        : 
-                        "Presente"}</td>
-                      <td>{item.description}</td>
-                      {item.justified === true &&
-                      <td><button className={style.altered} onClick={() => {
-                        handleDateAbsece(item.justified, item.date, formatarData(item.date))
-                      }}>Alterar</button></td>}
-                      
-                    </tr>
-                ))}
               </table>
-              ) : (
-                <>
+            ) : (
+              <>
                 <br />
-                  <span className={style.spanNotData}>Não Possui dados</span>
-                </>
-              )}
-
-            </div>
-
-
+                <span className={style.spanNotData}>Não Possui dados</span>
+              </>
+            )}
+          </div>
         </div>
       )}
     </div>

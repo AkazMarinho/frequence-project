@@ -23,6 +23,8 @@
 }
 
 .img{
+    margin-top: 0.2rem;
+    width: 1.3rem;
     opacity: 1;
     z-index: 13;
     object-fit: cover;

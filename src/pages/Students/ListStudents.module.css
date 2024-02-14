@@ -53,18 +53,18 @@
 
 }
 
-.table_full tr:hover{
+/* .table_full tr:hover{
     background-color: #6da1eb;
 
 
 }
 
-tbody, thead{
-    width: 800px;
-}
 
 tbody td{
     cursor: pointer;
+} */
+tbody, thead{
+    width: 800px;
 }
 
 thead{
@@ -100,4 +100,12 @@ thead{
 
 .linkActions svg{
      font-size: 20px;
+}
+
+
+.noData{
+    margin: .625rem;
+    font-weight: bold;
+    text-align: center;
+    /* width: 100%; */
 }

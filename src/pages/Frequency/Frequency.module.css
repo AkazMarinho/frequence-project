@@ -34,7 +34,6 @@
     width: 80px;
 }
 
-
  .topOption {
     display: flex;
     flex-wrap: wrap;
@@ -42,20 +41,31 @@
 
     gap: 10px;
  }
-.topOption button{
-   background-color: #7daef7;
+.buttonJus, .buttonDeL, .deleteContent .button{
     height: 40px;
     border-radius: 10px;
     margin: 10px 0 10px;
     box-shadow: 0 4px 6px #00000040;
     width: 140px;
 }
-.altered{
-    box-shadow: 0 4px 6px #00000040;
 
+.buttonJus{
+    background-color: #7daef7;
+}
+.buttonDeL{
+    border: solid 1px #c02e26 ;
+    background-color: #f15149;
 }
 
-.altered:hover, .topOption button:hover{
+.buttonDeL:hover{
+    background-color: #de453d;
+}
+
+.altered{
+    box-shadow: 0 4px 6px #00000040;
+}
+
+.altered:hover, .buttonJus:hover{
     background-color: #306abc;
 }
 .altered:active{
@@ -88,4 +98,60 @@
 .spanNotData{
     font-weight: bold;
     font-size: 20px;
+}
+
+
+.deleteContent{
+
+    width: 28rem;
+    height: 18.75rem;
+    border: 1px solid #b0b0b0;
+    background-color: #f15149;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    border: solid 1px #c02e26 ;
+
+    
+    z-index: 20;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    color: #181818;
+}
+
+.deleteContent span{
+    font-weight: bold;
+}
+
+.deleteContent .button{
+    background-color: #b5261f;
+
+}
+
+.deleteContent .button:hover{
+    background-color: #861711;
+    color: #fff;
+
+}
+
+.close{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: -40px;
+    margin-right: -20px;
+    margin-bottom: 45px;
+
+}
+.close svg {
+    font-size: 25px;
 }
