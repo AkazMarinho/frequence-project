@@ -15,7 +15,7 @@ export function ListStudents(){
   
   useEffect(() => {
     listStudents()
-  }, [])
+  })
 
 
   const handleList = () => {
