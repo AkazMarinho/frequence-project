@@ -98,6 +98,8 @@ export function Frequency() {
           <button onClick={() => {
             confirmDelete()
             setDel(false)
+            localStorage.removeItem("studentSkId")
+
             Navigate("/")
             window.location.reload();
 
