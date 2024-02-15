@@ -99,6 +99,8 @@ export function Frequency() {
             confirmDelete()
             setDel(false)
             Navigate("/")
+            window.location.reload();
+
           }} className={style.button}>OK</button>
         </div>
       }
