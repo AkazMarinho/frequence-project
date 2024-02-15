@@ -111,9 +111,9 @@ export function ListStudents(){
                         <td >{idx.email}</td>
                         <td >
                           <div className={style.linkActions}>
-                            <Link to='#'>
+                            {/* <Link to='#'>
                               <FaUserEdit />
-                            </Link> 
+                            </Link>  */}
                             <button onClick={() => {
                               handleQRCodeButton()
                             }}>
