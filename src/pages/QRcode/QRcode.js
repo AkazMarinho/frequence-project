@@ -3,6 +3,7 @@ import style from './QRcode.module.css';
 
 import { useContext, useEffect, useState } from "react";
 import  {QrcodeContext} from '../../context/QrcodeProvider.js'
+import { Loader } from "../../Layout/Loader.js";
 
 
 export function QRcode({close}) {
@@ -51,7 +52,7 @@ export function QRcode({close}) {
                 <button onClick={() => close(null)}><IoIosCloseCircleOutline /></button>
             </div>
 
-            {QRcodeImageData && (
+            {QRcodeImageData ? (
                 <>
                     <img src={`data:imge/png;base64, ${QRcodeImageData}`} alt="" />
                     <a href={qrCodeImage} download={`QRCode ${nameStudente}`}>
@@ -61,7 +62,18 @@ export function QRcode({close}) {
                         </button>
                     </a>
                 </>
-            )}
+            ) : 
+            (
+                <div className={style.loaderContent}>
+                    <div>
+                    <Loader/>
+
+                    </div>
+
+                </div>
+
+            )
+            }
 
         </div>
 

@@ -1,9 +1,4 @@
 import style from './NavBar.module.css'
-import { IoIosList } from "react-icons/io";
-
-import { IconBase } from 'react-icons';
-
-
 export function ItemNavBar(props){
     return(
         <div  className={`${style[props.conStyle]}`}>

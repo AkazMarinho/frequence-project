@@ -119,3 +119,15 @@
     font-weight:bolder;
 }
 
+.credits{
+    cursor: pointer;
+    color: #f1f1f1;
+    transition: .2s;
+    background-color: #4983D4;
+}
+
+.credits:hover{
+    color: #010935;
+    transition: .5s;
+}
+

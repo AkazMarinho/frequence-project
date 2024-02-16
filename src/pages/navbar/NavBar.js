@@ -1,8 +1,11 @@
 import {Link, useNavigate } from "react-router-dom";
 
+import style from './NavBar.module.css'
+
 import log from '../../img/Logos_UFPA.png'
 import { IoIosList } from "react-icons/io";
 import { TbUserPlus } from "react-icons/tb";
+import { FaInfoCircle } from "react-icons/fa";
 import { useEffect, useState, useContext} from 'react';
 import { ItemNavBar } from './ItemNavBar';
 
@@ -130,8 +133,14 @@ export function NavBar(){
                 {/* </Link> */}
             </div>
             <div className='flex
-                        justify-center
-                        itens-auto pb-[30px]'>
+                        justify-between
+                        itens-auto 
+                        pb-[30px]
+                        flex-col
+                        items-center
+                        h-[105px]
+                        mb-[-9px]
+                        '>
                 {/* <Link to='/login'> */}
                     <button
                         onClick={exit}
@@ -148,6 +157,14 @@ export function NavBar(){
                         >
                             Sair
                     </button>
+
+                    <span className={style.credits} onClick={() => {
+                        Navigate("./credits")
+                        localStorage.setItem("select",3);
+
+                    }}>
+                    <FaInfoCircle />
+                    </span>
                 {/* </Link> */}
             </div>
         </div>

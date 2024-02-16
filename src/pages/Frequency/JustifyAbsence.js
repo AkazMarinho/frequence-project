@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import style from "./JustifyAbsence.module.css"
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FrequencyContext } from "../../context/FrequencyProvider";
+import { ButtonLoading } from "../../StyledComponents/ButtonLoading.style";
+import { Loader } from "../../Layout/Loader";
 
 
 export function JustifyAbsence({title, descripstionAbsenceBoll, descripstionAbsenceTitle, close, dataDB, dateFormated}) {
 
   const [dataAbsenceFrequency, setDataAbsenceFrequency] = useState();
-  const {justifyAbsence,revokeJustifyAbsence, justifyAbsenceError, setJustifyAbsenceError} = useContext(FrequencyContext);
+  const {justifyAbsence,revokeJustifyAbsence, justifyAbsenceError, setJustifyAbsenceError, loader} = useContext(FrequencyContext);
   
 
   const [menssageError, setMenssageError] = useState(null);
@@ -118,7 +120,11 @@ export function JustifyAbsence({title, descripstionAbsenceBoll, descripstionAbse
                     </>
                 )}
             </div>
-            <button className={style.button} onClick={SubmitData}>Enviar</button>
+            <ButtonLoading onClick={SubmitData}>
+                <span>Enviar</span>
+                {loader ? <Loader/> : ""}
+            </ButtonLoading>
+
 
         </div>
     </div>

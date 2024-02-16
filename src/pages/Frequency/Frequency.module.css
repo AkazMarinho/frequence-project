@@ -100,11 +100,21 @@
     font-size: 20px;
 }
 
-
 .deleteContent{
-
     width: 28rem;
     height: 18.75rem;
+}
+
+.deleteContentError{
+    width: 26rem;
+    /* height: 18.75rem; */
+    z-index: 21;
+}
+
+
+.deleteContent, .deleteContentError{
+
+
     border: 1px solid #b0b0b0;
     background-color: #f15149;
     position: absolute;
