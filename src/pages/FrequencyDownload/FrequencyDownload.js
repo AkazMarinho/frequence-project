@@ -139,8 +139,8 @@ export function FrequencyDownload() {
           <option value="Presença">Presença</option>
         </select>
       </div>
-      <div>
-        {listFrequencyPerDayData && (
+      <div className={style.listStyle}>
+        {listFrequencyPerDayData ? (
           <div className={style.listStyle}>
             {
             dataResponse && dataResponse.length > 0 ?
@@ -181,10 +181,15 @@ export function FrequencyDownload() {
             (
               <span>Sem dados para esse dia</span>
             )
-            }
-            {/* {checkFrequencyPerDayData} */}
+          }
           </div>
-        )}
+          )
+          :
+          (
+            <span>Sem dados</span>
+          )
+        
+        }
         
       </div>
     </div>

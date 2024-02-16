@@ -10,10 +10,11 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 
 
 import { AuthContext } from "../../context/AuthProvider";
+import { ButtonLoading } from "../../StyledComponents/ButtonLoading.style";
 
 export function CreateStudents(){
     
-  const {createStudent, loader, resultCreateStudent, resultCreateStudentError, setResultCreateStudentError} = useContext(StudentsContext)
+  const {createStudent, loader, resultCreateStudentError, setResultCreateStudentError} = useContext(StudentsContext)
   const Select = localStorage.getItem("select");
 
   const {isLogin} = useContext(AuthContext)
@@ -49,7 +50,7 @@ export function CreateStudents(){
     }
 
     const handleOnChangeCPF = (e) => {
-        if(e.target.value.length > 11){
+        if(e.target.value.length > 11 ){
             setMenCPF('Insira apenas 11 numeros sem traços ou pontos')
         }else (
             setMenCPF('')
@@ -131,8 +132,8 @@ export function CreateStudents(){
                         name='bornYear'
                         id='bornYear' 
                         placeholder='Insira o ano de nacimento'
+                        maxlength="4"
                         
-                        maxLength={4}
                         onChange={handleOnChangeYear}
                         className="
                             w-[460px] 
@@ -155,6 +156,7 @@ export function CreateStudents(){
                         name='cpf'
                         id='cpf' 
                         placeholder='Insira o ano de CPF sem traços ou pontos'
+                        maxlength="11"
                         
                         onChange={handleOnChangeCPF}
                         className="
@@ -195,12 +197,16 @@ export function CreateStudents(){
                     />
 
                     <div className="w-full flex justify-center align-center mt-[20px] mb-[20px]">
-                        <ButtonSubmit textBtn='Enviar'/>
+                        {/* <ButtonSubmit textBtn='Enviar'/> */}
+                        <ButtonLoading>
+                            <span>Enviar</span>
+                                {loader ? <Loader/> : <></>}
+                        </ButtonLoading>
 
                     </div>
+
                 </form>
             </div>
-                     {loader ? <Loader/> : <></>}
 
 
             

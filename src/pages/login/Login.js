@@ -2,8 +2,9 @@ import {useEffect, useState } from "react";
 import { Input } from "../../Layout/input";
 import { Loader } from "../../Layout/Loader";
 import style from './Login.module.css'
-import { IoIosCloseCircleOutline } from "react-icons/io";
 
+import  {ButtonLoading} from "../../StyledComponents/ButtonLoading.style.js";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
@@ -95,10 +96,11 @@ export function Login(){
                     {error === "badRequest" && 
                         <p className="text-[#FF0000] font-bold">Usuário ou senha incorreta!</p>
                     }
-                    <button onClick={onSubmit} className="bg-[#134892] w-[178px] h-[44px] rounded-[7px] drop-shadow-[0_4px_6px_#00000040] hover:bg-[#0b2b57] flex justify-center gap-[0.6rem] items-center">
-                        <span className="text-[#ffffff] text-[22px]" >Entrar</span> 
+
+                    <ButtonLoading onClick={onSubmit} >
+                        <span>Entrar</span>
                         {loader ? <Loader/> : <></>}
-                    </button>
+                    </ButtonLoading>
 
                     {/* {loader ? <Loader/> : <></>} */}
 

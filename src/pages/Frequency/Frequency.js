@@ -4,26 +4,80 @@ import style from './Frequency.module.css'
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { JustifyAbsence } from "./JustifyAbsence";
 
-import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../../context/AuthProvider";
+import { ButtonLoading } from "../../StyledComponents/ButtonLoading.style";
+import { Loader } from "../../Layout/Loader";
 
 export function Frequency() {
-
-  const Navigate = useNavigate()
 
   const {isLogin} = useContext(AuthContext)
   useEffect(()=>{
     isLogin()
   });
-
-  const {frequency, dataFrequency, frequencyPerMonth, dataFrequencyPerMonth, deleteStudent} = useContext(StudentsContext);
+  
+  const {
+    frequency, 
+    dataFrequency, 
+    frequencyPerMonth, 
+    dataFrequencyPerMonth, 
+    deleteStudent, 
+    loader,
+    deleteStudentError,
+    setDeleteStudenterror
+  } = useContext(StudentsContext);
 
   const studentInfo = localStorage.getItem("studentInfo");
-
+  
   useEffect(() => {
     frequency();
+    currentMonth();
   }, []);
+  
+  const [monthCurrenty, setMonthCurrenty] = useState(null)
+  const currentMonth = () =>{
+    const date = new Date()
+    const month = date.getMonth();
+    switch(month){
+      case 0:
+        setMonthCurrenty("JANUARY")
+        break;
+      case 1:
+        setMonthCurrenty("FEBRUARY")
+        break;
+      case 2:
+        setMonthCurrenty("MARCH")
+        break;
+      case 3:
+        setMonthCurrenty("APRIL")
+        break;
+      case 4:
+        setMonthCurrenty("MAY")
+        break;
+      case 5:
+        setMonthCurrenty("JUNE")
+        break;
+      case 6:
+        setMonthCurrenty("JULY")
+        break;
+      case 7:
+        setMonthCurrenty("AUGUST")
+        break;
+      case 8:
+        setMonthCurrenty("SEPTEMBER")
+        break;
+      case 9:
+        setMonthCurrenty("OCTOBER")
+        break;
+      case 10:
+        setMonthCurrenty("NOVEMBER")
+        break;
+      case 11:
+        setMonthCurrenty("DECEMBER")
+        break;
+      default:
+        setMonthCurrenty("JANUARY")
+    }
+  }
 
   const confirmDelete = () =>{
     deleteStudent();
@@ -49,18 +103,21 @@ export function Frequency() {
     // const day = dayWithComma.replace('', '');
     const diaFormatado = day.length === 1 ? `0${day}` : day;
     return `${diaFormatado}/${month}/${year}`;
-
   }
-  const [valueMonth, setValueMonth] = useState("JANUARY");
 
   const handleSelection = (e) => {
-    setValueMonth(e.target.value);
-    setDateAbsence(null)
+    setMonthCurrenty(e.target.value)
   }
-
+  const handleSelectionClick = () => {
+    setDateAbsence(null)
+    setDel(false)
+  }
+  
   useEffect(() => {
-    frequencyPerMonth(valueMonth)
-  }, [valueMonth])
+    if(monthCurrenty !== null){
+    frequencyPerMonth(monthCurrenty)
+  }
+  }, [monthCurrenty])
 
   const [dateAbsence, setDateAbsence] = useState();
 
@@ -73,40 +130,67 @@ export function Frequency() {
   }
 
   const handleAddDateAbsece = () => {
+      setDel(false)
       setDateAbsence(() =>(
       <JustifyAbsence title="Justificar falta" descripstionAbsenceBoll={false} descripstionAbsenceTitle="Motivo" close={setDateAbsence}/>
     ))
   }
-  const [del , setDel] =useState(null)
+
+  const [del , setDel] = useState(null)
+  const [delError , setDelError] = useState(null)
+
+useEffect(()=>{
+    setDelError(true)
+    console.log(deleteStudentError);
+}, [deleteStudentError])
+
+  
   const handleDel = () => {
     setDel(true)
+    setDateAbsence(null)
   }
   
   return (
     <div className={style.content}>
       <div className="w-full">
+        
+        {del === true && 
+          <div className={style.deleteContent}>
 
-      {del === true && 
-        <div className={style.deleteContent}>
-          <div className={style.close}>
-              <button onClick={() => {
-                setDel(false)
-              }}><IoIosCloseCircleOutline /></button>
+              {deleteStudentError && 
+              
+                <div className={style.deleteContentError}>
+                  {console.log(delError)}
+                  Erro em servidor
+                  <ButtonLoading bg='#b5261f' onClick={() => {
+                      setDeleteStudenterror(null)
+                      setDel(false);
+                    }} 
+                    className={style.button}
+                  >
+                    <span>Ok</span>
+                    {loader ? <Loader/> : ""}
+                  </ButtonLoading>
+                </div>
+              }     
+            
+            <div className={style.close}>
+                <button onClick={() => {
+                  setDel(false)
+                }}><IoIosCloseCircleOutline /></button>
+            </div>
+            <span>Os dados serão excluidos permanente</span>
+            <span>Confirmar exclusão?</span>
+            <ButtonLoading bg='#b5261f' onClick={() => {
+                confirmDelete()
+              }} 
+              className={style.button}
+            >
+              <span>Ok</span>
+              {loader ? <Loader/> : ""}
+            </ButtonLoading>
           </div>
-          <span>Os dados serão excluidos permanente</span>
-          <span>Confirmar exclusão?</span>
-          <button onClick={() => {
-            confirmDelete()
-            setDel(false)
-            localStorage.removeItem("studentSkId")
-
-            Navigate("/")
-            window.location.reload();
-
-          }} className={style.button}>OK</button>
-        </div>
-      }
-
+        }
       {dateAbsence}
       </div>
       {dataFrequency && (
@@ -115,7 +199,7 @@ export function Frequency() {
 
           <div className={style.topOption}>
 
-            <select id="Meses" name="Meses" onChange={handleSelection}>
+            <select id="Meses" value={monthCurrenty} name="Meses" onClick={handleSelectionClick} onChange={handleSelection}>
               <option value="JANUARY">Janeiro</option>
               <option value="FEBRUARY">Fevereiro</option>
               <option value="MARCH">Março</option>
@@ -132,13 +216,12 @@ export function Frequency() {
 
             <div className={style.delete}>
               <button className={style.buttonDeL} onClick={handleDel}>Excluir aluno </button>
-
             </div>
+
             <div>
               <button className={style.buttonJus}  onClick={handleAddDateAbsece}>Justificar falta</button>
             </div>
           </div>
-
 
           <div className={style.internContent}>
             {dataFrequencyPerMonth && dataFrequencyPerMonth.length > 0 ? (

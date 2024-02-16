@@ -26,10 +26,8 @@ export function StudentsProvider ({children}) {
     const [resultCreateStudentError, setResultCreateStudentError] = useState(false) //state repsonsavel por armazenar resposta de criação de alunos
     //função de criaçã de um novo estudante
     const createStudent = async (data) => {
-        // setLoader(true); //ativa sistema de loading
-
+        setLoader(true); //ativa sistema de loading
         try{
-
             const response = await axios.post(`${URL}api/v1/students/${localData.idUser}`, //rota de criação de alunos
             {
                 "firstName" : data.firstName,
@@ -51,7 +49,7 @@ export function StudentsProvider ({children}) {
 
             if (response.status === 201){ //se a resposta for positiva e a requisição tiver sucesso..
                 Navigate('/'); //direciona para a tela de home
-                // setLoader(false); //desativa sistema de loading
+                setLoader(false); //desativa sistema de loading
                 localStorage.setItem("select",1);
             } else{
                 setResultCreateStudentError(true);
@@ -130,9 +128,11 @@ export function StudentsProvider ({children}) {
             console.log(error);
         }
     }
-    // const [listStudent, setListStudent] = useState([])
+
+    const [deleteStudentError, setDeleteStudenterror] = useState(null)
     //função de criaçã de listagem de estudantes
     const deleteStudent = async () => {
+        setLoader(true); //ativa sistema de loading
 
         try {
             const response = await axios.delete(`${URL}api/v1/students`,{ //rota para listagem de aluns no banco de dados
@@ -142,20 +142,24 @@ export function StudentsProvider ({children}) {
                 },
                 params : {
                     'tenant' : localData.tenant,
-                    
                     "studentSkId" : localData.skId
                 },
             });
 
-        console.log(response.status);
-            
-            
-            // if (response.status === 200) {
-            //     setListStudent(dadosOrdenados);
-            // }
+            if (response.status === 204) {
+                setLoader(false); //desativa sistema de loading
+
+                localStorage.removeItem("studentSkId");
+                Navigate("/");
+                window.location.reload();
+            } else {
+                setDeleteStudenterror("error");
+            }
         } 
         catch (error) {
+            setLoader(false); //desativa sistema de loading
             console.log(error);
+            setDeleteStudenterror("error");
         }
     }
 
@@ -213,7 +217,7 @@ export function StudentsProvider ({children}) {
             }
         }
         catch (error) {
-            console.log("Erro em rota de busca de frequencia: " + error);
+            console.log(error);
         }
     }
 
@@ -230,7 +234,9 @@ export function StudentsProvider ({children}) {
             dataFrequencyPerMonth,
             frequencyPerMonth,
             resultCreateStudentError,
-            setResultCreateStudentError, 
+            setResultCreateStudentError,
+            deleteStudentError, 
+            setDeleteStudenterror
         }}>{children}</StudentsContext.Provider>
     )
 }

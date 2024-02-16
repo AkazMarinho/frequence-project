@@ -6,6 +6,9 @@ export const FrequencyContext = createContext({});
 
 export function FrequencyProvider ({children}){
     const URL = env.API_URL;
+
+
+    const [loader, setLoader] = useState(null);
     
     const localData = { 
         "skId" : localStorage.getItem("studentSkId"), //seta em local storage a apikey do usuario,
@@ -15,10 +18,10 @@ export function FrequencyProvider ({children}){
 
     const [justifyAbsenceError, setJustifyAbsenceError] = useState(null);
     const justifyAbsence = async (data) => {
+        setLoader(true);
         try{
             if(data.description && data.date)
             {
-                console.log(1);
                 const response = await axios.post(`${URL}api/v1/frequency`,
                     {
                         "description": data.description
@@ -34,14 +37,19 @@ export function FrequencyProvider ({children}){
                     }
                 });
                 if (response.status === 200) {
+                    setLoader(false);
+
                     window.location.reload();
                 } 
             } 
             else {
                 setJustifyAbsenceError("incompleteData")
+                setLoader(false);
             }
         }
         catch (error){
+            setLoader(false);
+
             if (error.response && error.response.status) {
                 setJustifyAbsenceError("badRequest")
             } else{
@@ -263,7 +271,9 @@ export function FrequencyProvider ({children}){
             justifyAbsenceError,
             setJustifyAbsenceError,
             listFrequencyPerDay, 
-            listFrequencyPerDayData
+            listFrequencyPerDayData,
+            loader,
+            setLoader
         }}>
             {children}
         </FrequencyContext.Provider>
