@@ -68,3 +68,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Sistema de frequência - cursinho LOGOS, Universidade Federal do Pará, Campus Castanhal
+
+## Como inializar
+Para inicializar o projeto, crie uma pasta em sua maquina, e utlizando o git, digite o comando `git clone https://github.com/AkazMarinho/frequence-project.git`.
+*Obs: Será necessario instalar algumas dependencias como react-icons e react-router-dom, fique atento aos possiveis erros.*
+
+## Sobre o projeto
+
+O projeto foi criado com intuito de verificar o fluxo de alunos e facilitar a manipulação de dados no Cursinho LOGOS, sendo esse um projeto disponibilizado pela UFPA no campus Castanhal.
+O sistema conta com uma tela de `login`, para controle de acesso, sendo restrido apenas aos cordenadores e monitores do cursinho. A segurança é realizada atraves do ID do usuario e sua senha, sendo gerada uma chave de API KEY única a cada login.
+
+### Home
+A tela home possui o botão de `criação de dados` para um aluno, assim como uma `listagem de alunos`, onde é possivel verificar o `QR code` de cada aluno, utilizado para registrar a frequencia atraves do app do cursinho, e tambem verificar os dados de cada aluno individualmente.
+
+### Dados individuais dos Alunos
+A tela de `verificação de dados individual de alunos` é possivel `vizualizar a frequência do aluno` selecionado de acordo com o mês, sendo mostrados apenas os dias em que o aluno teve a sua frequencia validada. Pode ser alterado uma `falta com a justificativa` adequada, assim como a `revogação de uma falta` anteriormente justificada. Alem disso, é possivel realizar a ação de `exclusão dos dados do aluno`.
