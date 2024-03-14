@@ -9,50 +9,83 @@ O sistema também trás mais segurança, pois é necessário uma identificação
 ## Tecnologia utilizadas
 
 O projeto é desenvolvido em [React.js](https://react.dev/), sendo utilizados bibliotecas e funcionalidades dessa tecnologia como useContext para ter mais segurança quanto as requisições, [Styled Components](https://styled-components.com/) para o design system de alguns componentes, [React Router Dom](https://reactrouter.com/en/main) para interação entre páginas, [Axios](https://axios-http.com/) para ralizar as requisições Rest, [React icons](https://react-icons.github.io/react-icons/) para utilização de ícones, em algumas partes, foi utilizado a biblioteca de estilização [Tailwind](https://tailwindcss.com/) para uma rapidez de desenvolvimento.
+
 ## Telas do projeto
+
 - Login
 
-É realizado a verificação dos dados informados se estão corretos, caso estejam, o usuário será direcionado para a tela Home, caso estejam incorretos, irá aparecer uma mensagem informando o erro.
+É realizado a verificação dos dados informados se estão corretos, caso estejam, o usuário será direcionado para a tela Home. 
 
--- tela de login
--- tela de login com erro
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/1c0fbf56-6702-476a-8779-e647605e6808)
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/5299b6b3-787b-46a7-aec9-bb6eeb6e1de0)
+
+Caso os dados estejam incorretos, irá aparecer uma mensagem informando o erro.
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/3a484e4e-5085-4075-add1-f91f9db5508e)
 
 - Home
-Apresenta a barra lateral que fica disponível durante o usuário estar logado, onde apresenta as opções de listagem de alunos, e  a frequência por dia.
---Tela Home
+  
+Apresenta a barra lateral que fica disponível durante o usuário estar logado, onde apresenta as opções de listagem de alunos, criar novo aluno e a frequência por dia.
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/240922ab-dab7-4bd6-8815-a75084a4a1bc)
+
 É possível ver os dados como o nome, CPF, ano de nascimento, email e duas ações que são a visualização do QRcode e visualização de dados de frequência individual do aluno.
+
 - QR code
 
 O QRcode é necessário para validar a frequência do aluno via aplicativo, facilitando e tornando mais seguro o sistema de frequência uma vez que cada QRcode é único, sendo imprescindível que cada aluno tenha o seu.
 
---qrcode
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/4f3148df-11cc-48b8-a31c-0ce0fc0debb4)
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/0da3788d-9801-44a9-a9b2-9254c2c2babf)
+
+- Criar novo aluno
+
+Pode ser adicionado dados de um novo aluno que esta sendo integrado ao cursinho, onde todos os campos devem ser preenchidos.
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/4158af01-386a-4d28-aa0b-dd58eba86050)
+
+Caso uma tentativa de enviar os dados incompletos, irá gerar um erro.
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/b74aadd6-47bc-4d3b-ab04-0bef1784ca62)
+
+Ao ser criados os dados, o usuario será direcionado a tela Home.
 
 - Dados de frequência individual dos alunos
 
 Fica disponível a frequência por mês do aluno, sendo que a frequência é definida apenas pelos dias em que o estudante tem presença ou falta justificada, assim como a opção de excluir os dados do aluno. A página conta com um sistema de justificação de falta caso o aluno tenha faltado, e também a revogação de uma falta justificada
 
---tela de  frequência individual dos alunos
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/05c8cb0d-c4df-4c4d-be68-19d04a24674a)
 
-Caso um aluno falte, é possivel justificar a sua falta, com um campo de motivo e dia especifico. Se for realizado uma tentativa de justificar a falta em um dia que o aluno tenha presença,um erro será exibido. Para que tenha sucesso de envio, é necessario que exista um motivo e uma data, pois uma tentativa de envio de dados vazios resultara na exibição de um erro.
+Caso um aluno falte, é possivel justificar a sua falta, com um campo de motivo e dia especifico.
 
---tela de justificar falta
---tela de justificar falta com erro 1
---tela de justificar falta com erro 1
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/7a2c05c8-1cef-4626-b06e-8689b00b36be)
+
+Se for realizado uma tentativa de justificar a falta em um dia que o aluno tenha presença,um erro será exibido. 
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/ff52e846-740b-4a9d-bb6f-3b0c846d2697)
+
+ Para que tenha sucesso de envio, é necessario que exista um motivo e uma data, pois uma tentativa de envio de dados vazios resultara na exibição de um erro.
+ 
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/bbfb3b49-8d48-4448-a081-6ca08deeef3a)
 
 Caso seja verificado que um aluno com uma falta justificada não tenha um comprovação real, a falta justificada, pode ser anulada.
 
---tela de anular falta justificada
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/cd47b791-8570-48eb-ac52-e0bc08af1b04)
 
 Para que um aluno tenha seus dados excluídos, uma tela de confirmação seja exibida.
 
---tela de exclusão
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/82bab941-ac91-4361-aa16-d16d52f6070d)
 
 - Frequência por dia
 
 É possível visualizar um relatório diário de frequência, onde será mostrados todos os alunos, mas podendo ser exibidos apenas os que tiveram presença ou apenas os que tiveram a falta justificada.
--- todos
---presentes
---justificados
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/5e10fbf8-e846-4de5-99f7-9c734c1bb6f8)
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/358f3425-8ff5-4557-bbb4-67897ece88ef)
+
+![image](https://github.com/AkazMarinho/frequence-project/assets/58227029/2f8e1cb7-2cc6-409f-adbf-4b8a8f3f4d7d)
 
 ## Dependências necessárias e versão
 
