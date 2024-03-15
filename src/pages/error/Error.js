@@ -7,7 +7,6 @@ import {Link } from "react-router-dom";
 export function Error() {
 
     useEffect(()=>{
-        
         localStorage.setItem("select",3);
     })
 
@@ -22,11 +21,8 @@ export function Error() {
                 <p className='font-bold text-[20px] mb-[10px]'>A página que voce procura não foi encontrada.</p>
                 <Link to='/' className={style.link} onClick={toogleStyle}>
                     <ButtonSubmit textBtn='Ir para o início'/>
-                    
                 </Link>
-
             </div>
-
         </div>
     </>
   )

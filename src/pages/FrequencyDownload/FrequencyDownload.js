@@ -46,15 +46,16 @@ export function FrequencyDownload() {
   const [studentAll, setstudentAll] = useState();
   const [checkFilter, setCheckFilter] = useState(1);
 
+  const compararPorData = (a, b) => {
+    const nomeA = `${a.firstName} ${a.secondName}`;
+    const nomeB = `${b.firstName} ${b.secondName}`;
+    return nomeA.localeCompare(nomeB);
+  };
+
   useEffect(()=>{
     if(listFrequencyPerDayData){
       const arrayListFrequency = [...listFrequencyPerDayData.studentJustified, ...listFrequencyPerDayData.studentNotJustified]
       
-      const compararPorData = (a, b) => {
-        const nomeA = `${a.firstName} ${a.secondName}`;
-        const nomeB = `${b.firstName} ${b.secondName}`;
-        return nomeA.localeCompare(nomeB);
-      };
       
       const dadosOrdenadosPorData = arrayListFrequency.sort(compararPorData);
       setDataResponse(dadosOrdenadosPorData);
@@ -78,12 +79,12 @@ export function FrequencyDownload() {
       setDataResponse(studentAll);
 
     } else if(checkFilter === 2){
-      setDataResponse(listFrequencyPerDayData.studentNotJustified);
-
-    } else {
       setDataResponse(listFrequencyPerDayData.studentJustified);
-
+      
+    } else {
+      setDataResponse(listFrequencyPerDayData.studentNotJustified);
     }
+    
   }, [dataResponse])
 
   const handleSelection = (e) =>{
@@ -93,11 +94,12 @@ export function FrequencyDownload() {
       setCheckFilter(1)
       
     } else if (e.target.value === "Faltas_Justificadas"){
-      setDataResponse(listFrequencyPerDayData.studentNotJustified);
+      setDataResponse(listFrequencyPerDayData.studentJustified);
       setCheckFilter(2)
       
     } else{
-      setDataResponse(listFrequencyPerDayData.studentJustified);
+      const dataOrdened = listFrequencyPerDayData.studentNotJustified.sort(compararPorData);
+      setDataResponse(dataOrdened);
       setCheckFilter(3)
     }}
   }

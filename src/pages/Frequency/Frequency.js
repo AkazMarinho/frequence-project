@@ -141,7 +141,6 @@ export function Frequency() {
 
 useEffect(()=>{
     setDelError(true)
-    console.log(deleteStudentError);
 }, [deleteStudentError])
 
   
@@ -160,7 +159,6 @@ useEffect(()=>{
               {deleteStudentError && 
               
                 <div className={style.deleteContentError}>
-                  {console.log(delError)}
                   Erro em servidor
                   <ButtonLoading bg='#b5261f' onClick={() => {
                       setDeleteStudenterror(null)
