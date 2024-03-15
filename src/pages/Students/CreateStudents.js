@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react";
+import style from './CreateStudent.module.css'
 
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { StudentsContext } from "../../context/StudentManager";
-import { ButtonSubmit } from "../../Layout/ButtonSubmit";
 import { Loader } from "../../Layout/Loader";
-import style from './CreateStudent.module.css'
 import { IoIosCloseCircleOutline } from "react-icons/io";
-
-
-
 import { AuthContext } from "../../context/AuthProvider";
 import { ButtonLoading } from "../../StyledComponents/ButtonLoading.style";
 
 export function CreateStudents(){
     
-  const {createStudent, loader, resultCreateStudentError, setResultCreateStudentError} = useContext(StudentsContext)
-  const Select = localStorage.getItem("select");
+    const {createStudent, loader, resultCreateStudentError, setResultCreateStudentError} = useContext(StudentsContext)
 
-  const {isLogin} = useContext(AuthContext)
-  useEffect(()=>{
+    const {isLogin} = useContext(AuthContext)
+    useEffect(()=>{
     isLogin()
-  },)
+    },)
 
     useEffect(() => {
         localStorage.setItem("select", 2); //seta em local storage select como 2, e isso faz que na navbar seja mostrado a segunda seleção
-        // console.log(resultCreateStudent);
     })
-
 
     const [data, setData] = useState()
     const [menYear, setMenYear] = useState('')
@@ -58,11 +51,8 @@ export function CreateStudents(){
         setData({...data, [e.target.name] : e.target.value})
     }
 
-
-    
     return(
         <div className="flex bg-[#F1F1F1] p-[30px] w-full ">
-
             <div  className=" w-full bg-[#4983D4] flex justify-center items-center rounded-[10px] relative p-[30px]">
                 {resultCreateStudentError === true && (
                     <div className={style.errorSendData}>
@@ -70,7 +60,6 @@ export function CreateStudents(){
                             <button onClick={()=>setResultCreateStudentError(false)}><IoIosCloseCircleOutline /></button>
                         </div>
                         <span>Ocorreu um erro inesperado, verifique se todos os campos estão preenchidos e tente novamente</span>
-
                         <button className={style.button} onClick={()=>setResultCreateStudentError(false)}>
                             Ok
                         </button>
@@ -91,19 +80,7 @@ export function CreateStudents(){
                         id='firstName' 
                         placeholder='Insira o primeiro nome'
                         onChange={handleOnChange}
-                        className="
-                            w-[460px] 
-                            h-[38px]
-                            outline-none 
-                            bg-[#D9D9D9] 
-                            p-[8px] 
-                            placeholder-[#383838] 
-                            placeholder-[16px] 
-                            rounded-[5px]
-                            drop-shadow-[0_4px_4px_#00000040]
-                            mb-[10px]
-                        "
-                    />
+                        className=" w-[460px] h-[38px] outline-none bg-[#D9D9D9] p-[8px] placeholder-[#383838] placeholder-[16px] rounded-[5px] drop-shadow-[0_4px_4px_#00000040] mb-[10px]"/>
 
                     <label htmlFor='secondName' className="block mb-[6px] text-[18px] font-bold">Sobrenome</label>
                     <input 
@@ -112,19 +89,7 @@ export function CreateStudents(){
                         id='secondName' 
                         placeholder='Insira o segundo nome'
                         onChange={handleOnChange}
-                        className="
-                            w-[460px] 
-                            h-[38px]
-                            outline-none 
-                            bg-[#D9D9D9] 
-                            p-[8px] 
-                            placeholder-[#383838] 
-                            placeholder-[16px] 
-                            rounded-[5px]
-                            drop-shadow-[0_4px_4px_#00000040]
-                            mb-[10px]
-                        "
-                    />
+                        className="w-[460px] h-[38px] outline-none bg-[#D9D9D9] p-[8px] placeholder-[#383838] placeholder-[16px] rounded-[5px] drop-shadow-[0_4px_4px_#00000040] mb-[10px]"/>
 
                     <label htmlFor='bornYear' className="block mb-[6px] text-[18px] font-bold">Ano de nascimento</label>
                     <input 
@@ -132,22 +97,8 @@ export function CreateStudents(){
                         name='bornYear'
                         id='bornYear' 
                         placeholder='Insira o ano de nacimento'
-                        maxlength="4"
-                        
                         onChange={handleOnChangeYear}
-                        className="
-                            w-[460px] 
-                            h-[38px]
-                            outline-none 
-                            bg-[#D9D9D9] 
-                            p-[8px] 
-                            placeholder-[#383838] 
-                            placeholder-[16px] 
-                            rounded-[5px]
-                            drop-shadow-[0_4px_4px_#00000040]
-                            mb-[10px]
-                        "
-                    />
+                        className=" w-[460px] h-[38px] outline-none bg-[#D9D9D9] p-[8px] placeholder-[#383838] placeholder-[16px] rounded-[5px] drop-shadow-[0_4px_4px_#00000040] mb-[10px] "/>
                     <p className="text-[#FF000099] font-bold">{menYear}</p>
 
                     <label htmlFor='cpf' className="block mb-[6px] text-[18px] font-bold">CPF</label>
@@ -156,22 +107,8 @@ export function CreateStudents(){
                         name='cpf'
                         id='cpf' 
                         placeholder='Insira o ano de CPF sem traços ou pontos'
-                        maxlength="11"
-                        
                         onChange={handleOnChangeCPF}
-                        className="
-                            w-[460px] 
-                            h-[38px]
-                            outline-none 
-                            bg-[#D9D9D9] 
-                            p-[8px] 
-                            placeholder-[#383838] 
-                            placeholder-[16px] 
-                            rounded-[5px]
-                            drop-shadow-[0_4px_4px_#00000040]
-                            mb-[10px]
-                        "
-                    />
+                        className="w-[460px] h-[38px] outline-none bg-[#D9D9D9] p-[8px] placeholder-[#383838] placeholder-[16px] rounded-[5px] drop-shadow-[0_4px_4px_#00000040] mb-[10px] "/>
                     <p className="text-[#FF000099] font-bold">{menCPF}</p>
 
                     <label htmlFor='email' className="block mb-[6px] text-[18px] font-bold">EMAIL</label>
@@ -182,34 +119,16 @@ export function CreateStudents(){
                         placeholder='Insira o email'
                         
                         onChange={handleOnChange}
-                        className="
-                            w-[460px] 
-                            h-[38px]
-                            outline-none 
-                            bg-[#D9D9D9] 
-                            p-[8px] 
-                            placeholder-[#383838] 
-                            placeholder-[16px] 
-                            rounded-[5px]
-                            drop-shadow-[0_4px_4px_#00000040]
-                            mb-[10px]
-                        "
-                    />
+                        className="w-[460px] h-[38px]outline-none bg-[#D9D9D9] p-[8px] placeholder-[#383838] placeholder-[16px] rounded-[5px] drop-shadow-[0_4px_4px_#00000040] mb-[10px] "/>
 
                     <div className="w-full flex justify-center align-center mt-[20px] mb-[20px]">
-                        {/* <ButtonSubmit textBtn='Enviar'/> */}
                         <ButtonLoading>
                             <span>Enviar</span>
                                 {loader ? <Loader/> : <></>}
                         </ButtonLoading>
-
                     </div>
-
                 </form>
             </div>
-
-
-            
         </div>
     )
 }

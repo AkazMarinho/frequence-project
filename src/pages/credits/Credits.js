@@ -45,7 +45,7 @@ export default function Credits() {
                 </div>
                 <div className={style.app} >
                     <span>Baixe tambem o app</span>
-                    <a href='https://drive.google.com/file/d/170gw8cFgAi0l6PhGgL8_0tU0p2AOL12f/view?usp=sharing'  target="_blank" rel="noopener noreferrer">
+                    <a href='https://drive.google.com/drive/folders/1f6fAF7bHqDdermrcG6wCnBB_KoVYW6KZ?usp=sharing'  target="_blank" rel="noopener noreferrer">
                     <TfiAndroid />
 
                     </a>
